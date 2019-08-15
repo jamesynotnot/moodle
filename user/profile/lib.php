@@ -749,7 +749,7 @@ function profile_signup_fields($mform) {
             // Check if we change the categories.
             if (!isset($currentcat) || $currentcat != $field->categoryid) {
                  $currentcat = $field->categoryid;
-                 $mform->addElement('header', 'category_'.$field->categoryid, format_string($field->categoryname));
+                 //$mform->addElement('header', 'category_'.$field->categoryid, format_string($field->categoryname));
             };
             $field->object->edit_field($mform);
         }

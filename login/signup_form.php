@@ -35,7 +35,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
 
         $mform = $this->_form;
 
-        $mform->addElement('header', 'createuserandpass', get_string('createuserandpass'), '');
+        //$mform->addElement('header', 'createuserandpass', get_string('createuserandpass'), '');
 
 
         $mform->addElement('text', 'username', get_string('username'), 'maxlength="100" size="12" autocapitalize="none"');
@@ -49,17 +49,18 @@ class login_signup_form extends moodleform implements renderable, templatable {
         $mform->setType('password', core_user::get_property_type('password'));
         $mform->addRule('password', get_string('missingpassword'), 'required', null, 'client');
 
-        $mform->addElement('header', 'supplyinfo', get_string('supplyinfo'),'');
+        //$mform->addElement('header', 'supplyinfo', get_string('supplyinfo'),'');
 
         $mform->addElement('text', 'email', get_string('email'), 'maxlength="100" size="25"');
         $mform->setType('email', core_user::get_property_type('email'));
+        $mform->addRule('email', 'Invalid email address', 'regex', '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/', 'client');
         $mform->addRule('email', get_string('missingemail'), 'required', null, 'client');
         $mform->setForceLtr('email');
 
-        $mform->addElement('text', 'email2', get_string('emailagain'), 'maxlength="100" size="25"');
-        $mform->setType('email2', core_user::get_property_type('email'));
-        $mform->addRule('email2', get_string('missingemail'), 'required', null, 'client');
-        $mform->setForceLtr('email2');
+        //$mform->addElement('text', 'email2', get_string('emailagain'), 'maxlength="100" size="25"');
+        //$mform->setType('email2', core_user::get_property_type('email'));
+        //$mform->addRule('email2', get_string('missingemail'), 'required', null, 'client');
+        //$mform->setForceLtr('email2');
 
         $namefields = useredit_get_required_name_fields();
         foreach ($namefields as $field) {
@@ -71,6 +72,12 @@ class login_signup_form extends moodleform implements renderable, templatable {
             }
             $mform->addRule($field, get_string($stringid), 'required', null, 'client');
         }
+
+        $mform->addElement('text', 'phone2', get_string('phone2'), 'maxlength="25" size="25"');
+        $mform->setType('phone2', core_user::get_property_type('phone2'));
+        $mform->addRule('phone2', 'Start with + then country code, example: +1 91 5551212)', 'regex', '/(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/', 'client');
+        $mform->addRule('phone2', 'Missing mobile phone', 'required', null, 'client');
+        $mform->setForceLtr('phone2');
 
         $mform->addElement('text', 'city', get_string('city'), 'maxlength="120" size="20"');
         $mform->setType('city', core_user::get_property_type('city'));
@@ -92,7 +99,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
         profile_signup_fields($mform);
 
         if (signup_captcha_enabled()) {
-            $mform->addElement('recaptcha', 'recaptcha_element', get_string('security_question', 'auth'));
+            $mform->addElement('recaptcha', 'recaptcha_element', '');
             $mform->addHelpButton('recaptcha_element', 'recaptcha', 'auth');
             $mform->closeHeaderBefore('recaptcha_element');
         }
