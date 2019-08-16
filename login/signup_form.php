@@ -73,8 +73,16 @@ class login_signup_form extends moodleform implements renderable, templatable {
             $mform->addRule($field, get_string($stringid), 'required', null, 'client');
         }
 
+        $phone2 = '';
+        if (isset($_GET['sms'])) {
+            $phone2 = $_GET['sms'];
+        }
+        if (isset($_GET['whatsapp'])) {
+            $phone2 = $_GET['whatsapp'];
+        }
         $mform->addElement('text', 'phone2', get_string('phone2'), 'maxlength="25" size="25"');
         $mform->setType('phone2', core_user::get_property_type('phone2'));
+        $mform->setDefault('phone2', $phone2);
         $mform->addRule('phone2', 'Start with + then country code, example: +1 91 5551212)', 'regex', '/(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/', 'client');
         $mform->addRule('phone2', 'Missing mobile phone', 'required', null, 'client');
         $mform->setForceLtr('phone2');
