@@ -44,7 +44,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
         //           2) create a hidden email field with a setDefault to a valid temp address
         //           3) substitute username as the real email address, a.k.a. username, in signup.php.  valid@valid.valid
 
-        $mform->addElement('text', 'username', get_string('email'), 'maxlength="100" size="55" autocapitalize="none"');
+        $mform->addElement('text', 'username', get_string('email'), 'maxlength="100" size="40" autocapitalize="none"');
         $mform->setType('username', core_user::get_property_type('email'));
         $mform->addRule('username', 'Invalid email address', 'regex', '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/', 'client');
         $mform->addRule('username', get_string('missingemail'), 'required', null, 'client');
@@ -53,12 +53,12 @@ class login_signup_form extends moodleform implements renderable, templatable {
         $mform->addElement('hidden', 'email', get_string('email'), 'maxlength="100" size="25"');
         $mform->setDefault('email', 'valid@valid.valid');
 
-        if (!empty($CFG->passwordpolicy)){
-            $mform->addElement('static', 'passwordpolicyinfo', '', print_password_policy());
-        }
         $mform->addElement('password', 'password', get_string('password'), 'maxlength="32" size="12"');
         $mform->setType('password', core_user::get_property_type('password'));
         $mform->addRule('password', get_string('missingpassword'), 'required', null, 'client');
+        if (!empty($CFG->passwordpolicy)){
+            $mform->addElement('static', 'passwordpolicyinfo', '', print_password_policy());
+        }
 
         $mform->addElement('static', 'info', '', 'Please make a note of the email address and password you entered as they will be required in the future.');
 
