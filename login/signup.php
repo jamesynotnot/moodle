@@ -86,6 +86,9 @@ if ($mform_signup->is_cancelled()) {
     // Add missing required fields.
     $user = signup_setup_new_user($user);
 
+    // DestinyEDU: add actual email value to field to replace temporary valid formatted (not yet validated) email address
+    $user->email = $user->username;
+
     $authplugin->user_signup($user, true); // prints notice and link to login/index.php
     exit; //never reached
 }

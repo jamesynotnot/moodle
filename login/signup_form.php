@@ -35,12 +35,23 @@ class login_signup_form extends moodleform implements renderable, templatable {
 
         $mform = $this->_form;
 
-        //$mform->addElement('header', 'createuserandpass', get_string('createuserandpass'), '');
+        // DestinyEDU: username field is removed and is not used for sign-up/in; as a required field, however, it is set to email
+        //   address in signup.php on submit (temp email address is set below for field validation on submit).
+        // Setting "Allow extended characters in usernames" is required since Moodle username charset is random and does not
+        //   conform to RFC 822 (even simple uppercase is not allowed).
+        // Username has client-side processing rules that make it required, i.e. if not included in the form, form is not accepted
+        // Solution: 1) use email label, email validation and LTR with username,
+        //           2) create a hidden email field with a setDefault to a valid temp address
+        //           3) substitute username as the real email address, a.k.a. username, in signup.php.  valid@valid.valid
 
+        $mform->addElement('text', 'username', get_string('email'), 'maxlength="100" size="55" autocapitalize="none"');
+        $mform->setType('username', core_user::get_property_type('email'));
+        $mform->addRule('username', 'Invalid email address', 'regex', '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/', 'client');
+        $mform->addRule('username', get_string('missingemail'), 'required', null, 'client');
+        $mform->setForceLtr('username');
 
-        $mform->addElement('text', 'username', get_string('username'), 'maxlength="100" size="12" autocapitalize="none"');
-        $mform->setType('username', PARAM_RAW);
-        $mform->addRule('username', get_string('missingusername'), 'required', null, 'client');
+        $mform->addElement('hidden', 'email', get_string('email'), 'maxlength="100" size="25"');
+        $mform->setDefault('email', 'valid@valid.valid');
 
         if (!empty($CFG->passwordpolicy)){
             $mform->addElement('static', 'passwordpolicyinfo', '', print_password_policy());
@@ -49,18 +60,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
         $mform->setType('password', core_user::get_property_type('password'));
         $mform->addRule('password', get_string('missingpassword'), 'required', null, 'client');
 
-        //$mform->addElement('header', 'supplyinfo', get_string('supplyinfo'),'');
-
-        $mform->addElement('text', 'email', get_string('email'), 'maxlength="100" size="25"');
-        $mform->setType('email', core_user::get_property_type('email'));
-        $mform->addRule('email', 'Invalid email address', 'regex', '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/', 'client');
-        $mform->addRule('email', get_string('missingemail'), 'required', null, 'client');
-        $mform->setForceLtr('email');
-
-        //$mform->addElement('text', 'email2', get_string('emailagain'), 'maxlength="100" size="25"');
-        //$mform->setType('email2', core_user::get_property_type('email'));
-        //$mform->addRule('email2', get_string('missingemail'), 'required', null, 'client');
-        //$mform->setForceLtr('email2');
+        $mform->addElement('static', 'info', '', 'Please make a note of the email address and password you entered as they will be required in the future.');
 
         $namefields = useredit_get_required_name_fields();
         foreach ($namefields as $field) {
@@ -94,13 +94,31 @@ class login_signup_form extends moodleform implements renderable, templatable {
         }
 
         $country = get_string_manager()->get_list_of_countries();
+
+        $host_country['NG'] = 'Nigeria';
+        $country = array_merge($host_country, $country);
+        $host_country['NE'] = 'Niger';
+        $country = array_merge($host_country, $country);
+        $host_country['TD'] = 'Chad';
+        $country = array_merge($host_country, $country);
+        $host_country['CM'] = 'Cameroon';
+        $country = array_merge($host_country, $country);
+        $host_country['BJ'] = 'Benin';
+        $country = array_merge($host_country, $country);
+
         $default_country[''] = get_string('selectacountry');
         $country = array_merge($default_country, $country);
         $mform->addElement('select', 'country', get_string('country'), $country);
 
-        if( !empty($CFG->country) ){
-            $mform->setDefault('country', $CFG->country);
-        }else{
+        if(isset($phone2) === true && $phone2 !== '') {
+
+            $iso_country_code = $this->get_iso_country_code($phone2);
+            if ($iso_country_code !== '') {
+                $mform->setDefault('country', $iso_country_code);
+            } else {
+                $mform->setDefault('country', '');
+            }
+        } else {
             $mform->setDefault('country', '');
         }
 
@@ -112,6 +130,9 @@ class login_signup_form extends moodleform implements renderable, templatable {
             $mform->closeHeaderBefore('recaptcha_element');
         }
 
+        $mform->addElement('static', 'info', '', 'Sign up and receive a free Spiritual Empowerment course with Dr. Morris Cerullo.');
+        $mform->addElement('static', 'info', '', 'Sign up to learn more about receiving a grant for an American university degree.');
+
         // Add "Agree to sitepolicy" controls. By default it is a link to the policy text and a checkbox but
         // it can be implemented differently in custom sitepolicy handlers.
         $manager = new \core_privacy\local\sitepolicy\manager();
@@ -120,6 +141,28 @@ class login_signup_form extends moodleform implements renderable, templatable {
         // buttons
         $this->add_action_buttons(true, get_string('createaccount'));
 
+    }
+
+    function get_iso_country_code($phone){
+
+        $iso_3166_country_code = '';
+        if ($phone === '') {
+            $iso_3166_country_code = '';
+        } else if (substr( $phone, 0, 2 ) === "+1") {
+            $iso_3166_country_code = ''; // TODO parse counties that use '1': CA, TT, etc.
+        } else if (substr( $phone, 0, 4 ) === "+234") {
+            $iso_3166_country_code = 'NG';
+        } else if (substr( $phone, 0, 4 ) === "+227") {
+            $iso_3166_country_code = 'NE';
+        } else if (substr( $phone, 0, 4 ) === "+235") {
+            $iso_3166_country_code = 'TD';
+        } else if (substr( $phone, 0, 4 ) === "+237") {
+            $iso_3166_country_code = 'CM';
+        } else if (substr( $phone, 0, 4 ) === "+229") {
+            $iso_3166_country_code = 'BE';
+        }
+
+        return $iso_3166_country_code;
     }
 
     function definition_after_data(){
