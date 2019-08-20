@@ -53,14 +53,17 @@ class login_signup_form extends moodleform implements renderable, templatable {
         $mform->addElement('hidden', 'email', get_string('email'), 'maxlength="100" size="25"');
         $mform->setDefault('email', 'valid@valid.valid');
 
-        $mform->addElement('password', 'password', get_string('password'), 'maxlength="32" size="12"');
-        $mform->setType('password', core_user::get_property_type('password'));
-        $mform->addRule('password', get_string('missingpassword'), 'required', null, 'client');
         if (!empty($CFG->passwordpolicy)){
             $mform->addElement('static', 'passwordpolicyinfo', '', print_password_policy());
         }
+        $mform->addElement('password', 'password', get_string('password'), 'maxlength="32" size="12"');
+        $mform->setType('password', core_user::get_property_type('password'));
+        $mform->addRule('password', get_string('missingpassword'), 'required', null, 'client');
 
-        $mform->addElement('static', 'info', '', 'Please make a note of the email address and password you entered as they will be required in the future.');
+        $strpasswordagain = get_string('password') . ' (' . get_string('again') . ')';
+        $mform->addElement('password', 'password2', $strpasswordagain, 'maxlength="32" size="12"');
+        $mform->setType('password2', PARAM_RAW);
+        $mform->addRule('password2', get_string('missingpassword'), 'required', null, 'client');
 
         $namefields = useredit_get_required_name_fields();
         foreach ($namefields as $field) {
@@ -89,6 +92,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
 
         $mform->addElement('text', 'city', get_string('city'), 'maxlength="120" size="20"');
         $mform->setType('city', core_user::get_property_type('city'));
+        $mform->addRule('city', 'Missing city or town', 'required', null, 'client');
         if (!empty($CFG->defaultcity)) {
             $mform->setDefault('city', $CFG->defaultcity);
         }
@@ -130,8 +134,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
             $mform->closeHeaderBefore('recaptcha_element');
         }
 
-        $mform->addElement('static', 'info', '', 'Sign up and receive a free Spiritual Empowerment course with Dr. Morris Cerullo.');
-        $mform->addElement('static', 'info', '', 'Sign up to learn more about receiving a grant for an American university degree.');
+        $mform->addElement('static', 'info', '', 'Begin your journey of empowerment and education.');
 
         // Add "Agree to sitepolicy" controls. By default it is a link to the policy text and a checkbox but
         // it can be implemented differently in custom sitepolicy handlers.
@@ -196,6 +199,10 @@ class login_signup_form extends moodleform implements renderable, templatable {
             } else {
                 $errors['recaptcha_element'] = get_string('missingrecaptchachallengefield');
             }
+        }
+
+        if ($data['password'] <> $data['password2']) {
+            $errors['password2'] = get_string('passwordsdiffer');
         }
 
         $errors += signup_validate_data($data, $files);
