@@ -45,15 +45,14 @@ class login_forgot_password_form extends moodleform {
 
         $mform    = $this->_form;
         $mform->setDisableShortforms(true);
-
-        $mform->addElement('header', 'searchbyusername', get_string('searchbyusername'), '');
-
-        $purpose = user_edit_map_field_purpose($USER->id, 'username');
-        $mform->addElement('text', 'username', get_string('username'), 'size="20"' . $purpose);
-        $mform->setType('username', PARAM_RAW);
-
-        $submitlabel = get_string('search');
-        $mform->addElement('submit', 'submitbuttonusername', $submitlabel);
+// DestinyEDU: not using username, hence, redundant
+//        $mform->addElement('header', 'searchbyusername', get_string('searchbyusername'), '');
+//        $purpose = user_edit_map_field_purpose($USER->id, 'username');
+//        $mform->addElement('text', 'username', get_string('username'), 'size="20"' . $purpose);
+//        $mform->setType('username', PARAM_RAW);
+//
+//        $submitlabel = get_string('search');
+//        $mform->addElement('submit', 'submitbuttonusername', $submitlabel);
 
         $mform->addElement('header', 'searchbyemail', get_string('searchbyemail'), '');
 
