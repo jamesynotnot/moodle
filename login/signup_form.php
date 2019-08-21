@@ -86,7 +86,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
         $mform->addElement('text', 'phone2', get_string('phone2'), 'maxlength="25" size="25"');
         $mform->setType('phone2', core_user::get_property_type('phone2'));
         $mform->setDefault('phone2', $phone2);
-        $mform->addRule('phone2', 'Start with + then country code, example: +1 91 5551212)', 'regex', '/(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/', 'client');
+        $mform->addRule('phone2', 'Please type a valid phone number', 'regex', '/^((\+)?[1-9]{1,2})?([-\s\.])?((\(\d{1,4}\))|\d{1,4})(([-\s\.])?[0-9]{1,12}){1,2}$/', 'client');
         $mform->addRule('phone2', 'Missing mobile phone', 'required', null, 'client');
         $mform->setForceLtr('phone2');
 
@@ -113,6 +113,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
         $default_country[''] = get_string('selectacountry');
         $country = array_merge($default_country, $country);
         $mform->addElement('select', 'country', get_string('country'), $country);
+        $mform->addRule('country', 'Missing country', 'required', null, 'client');
 
         if(isset($phone2) === true && $phone2 !== '') {
 
