@@ -134,7 +134,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
             $mform->closeHeaderBefore('recaptcha_element');
         }
 
-        $mform->addElement('static', 'info', '', 'Begin your journey of empowerment and education.');
+        $mform->addElement('static', 'info', '', 'Begin your journey of empowerment and education!');
 
         // Add "Agree to sitepolicy" controls. By default it is a link to the policy text and a checkbox but
         // it can be implemented differently in custom sitepolicy handlers.
