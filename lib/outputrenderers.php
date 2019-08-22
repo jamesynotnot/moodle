@@ -1160,19 +1160,20 @@ class core_renderer extends renderer_base {
     public function home_link() {
         global $CFG, $SITE;
 
-        if ($this->page->pagetype == 'site-index') {
-            // Special case for site home page - please do not remove
-            return '<div class="sitelink">' .
-                   '<a title="Moodle" href="http://moodle.org/">' .
-                   '<img src="' . $this->image_url('moodlelogo_grayhat') . '" alt="'.get_string('moodlelogo').'" /></a></div>';
-
-        } else if (!empty($CFG->target_release) && $CFG->target_release != $CFG->release) {
-            // Special case for during install/upgrade.
-            return '<div class="sitelink">'.
-                   '<a title="Moodle" href="http://docs.moodle.org/en/Administrator_documentation" onclick="this.target=\'_blank\'">' .
-                   '<img src="' . $this->image_url('moodlelogo_grayhat') . '" alt="'.get_string('moodlelogo').'" /></a></div>';
-
-        } else if ($this->page->course->id == $SITE->id || strpos($this->page->pagetype, 'course-view') === 0) {
+//        if ($this->page->pagetype == 'site-index') {
+//            // Special case for site home page - please do not remove
+//            return '<div class="sitelink">' .
+//                   '<a title="Moodle" href="http://moodle.org/">' .
+//                   '<img src="' . $this->image_url('moodlelogo_grayhat') . '" alt="'.get_string('moodlelogo').'" /></a></div>';
+//
+//        } else if (!empty($CFG->target_release) && $CFG->target_release != $CFG->release) {
+//            // Special case for during install/upgrade.
+//            return '<div class="sitelink">'.
+//                   '<a title="Moodle" href="http://docs.moodle.org/en/Administrator_documentation" onclick="this.target=\'_blank\'">' .
+//                   '<img src="' . $this->image_url('moodlelogo_grayhat') . '" alt="'.get_string('moodlelogo').'" /></a></div>';
+//
+//        } else
+        if ($this->page->course->id == $SITE->id || strpos($this->page->pagetype, 'course-view') === 0) {
             return '<div class="homelink"><a href="' . $CFG->wwwroot . '/">' .
                     get_string('home') . '</a></div>';
 
