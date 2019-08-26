@@ -3273,6 +3273,12 @@ EOD;
         if (!$withlinks) {
             $usermenuclasses .= ' withoutlinks';
         }
+        $usermenuclasses .= ' mr-5';
+
+        // Add a class for when admin button.
+        $coursecontrolsclasses = 'coursecontrols nav-item d-flex';
+        $siteadminlink = 'siteadminlink nav-item nav-link';
+        $siteadminbutton = 'btn nav-link float-sm-left mr-5 btn-secondary';
 
         $returnstr = "";
 
@@ -3285,17 +3291,29 @@ EOD;
         $loginurl = get_login_url();
         // If not logged in, show the typical not-logged-in string.
         if (!isloggedin()) {
-            $returnstr = get_string('loggedinnot', 'moodle');
+
+            $registerurl = new moodle_url('/login/signup.php');
+            $htmlstr = html_writer::div(
+                html_writer::tag("button",
+                    "Register",
+                    array('class' => $siteadminbutton, 'style' => 'background-color:#5aa264;color:#ffffff', 'onclick' => 'location.href="'.$registerurl.'";')
+                ),
+                $coursecontrolsclasses
+            );
+
+            $returnstr = "";
             if (!$loginpage) {
-                $returnstr .= " (<a href=\"$loginurl\">" . get_string('login') . '</a>)';
+                $returnstr .= "<a href=\"$loginurl\">" . get_string('login') . '</a>';
             }
-            return html_writer::div(
+
+            $htmlstr = $htmlstr.html_writer::div(
                 html_writer::span(
                     $returnstr,
                     'login'
                 ),
                 $usermenuclasses
             );
+            return $htmlstr;
 
         }
 
