@@ -3303,7 +3303,7 @@ EOD;
 
             $returnstr = "";
             if (!$loginpage) {
-                $returnstr .= "<a href=\"$loginurl\">" . get_string('login') . '</a>';
+                $returnstr .= "    <a href=\"$loginurl\">" . get_string('login') . '</a>';
             }
 
             $htmlstr = $htmlstr.html_writer::div(
