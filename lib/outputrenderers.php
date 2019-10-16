@@ -112,13 +112,13 @@ class renderer_base {
             $safeconfig = $this->page->requires->get_config_for_javascript($this->page, $this);
 
             $helpers = array('config' => $safeconfig,
-                             'str' => array($stringhelper, 'str'),
-                             'quote' => array($quotehelper, 'quote'),
-                             'js' => array($jshelper, 'help'),
-                             'pix' => array($pixhelper, 'pix'),
-                             'shortentext' => array($shortentexthelper, 'shorten'),
-                             'userdate' => array($userdatehelper, 'transform'),
-                         );
+                'str' => array($stringhelper, 'str'),
+                'quote' => array($quotehelper, 'quote'),
+                'js' => array($jshelper, 'help'),
+                'pix' => array($pixhelper, 'pix'),
+                'shortentext' => array($shortentexthelper, 'shorten'),
+                'userdate' => array($userdatehelper, 'transform'),
+            );
 
             $this->mustache = new Mustache_Engine(array(
                 'cache' => $cachedir,
@@ -707,7 +707,7 @@ class core_renderer extends renderer_base {
         // List alternate versions.
         foreach ($this->page->alternateversions as $type => $alt) {
             $output .= html_writer::empty_tag('link', array('rel' => 'alternate',
-                    'type' => $type, 'title' => $alt->title, 'href' => $alt->url));
+                'type' => $type, 'title' => $alt->title, 'href' => $alt->url));
         }
 
         // Add noindex tag if relevant page and setting applied.
@@ -798,10 +798,10 @@ class core_renderer extends renderer_base {
 
             $output .= $this->box_end();
             $this->page->requires->yui_module('moodle-core-maintenancemodetimer', 'M.core.maintenancemodetimer',
-                    array(array('timeleftinsec' => $timeleft)));
+                array(array('timeleftinsec' => $timeleft)));
             $this->page->requires->strings_for_js(
-                    array('maintenancemodeisscheduled', 'maintenancemodeisscheduledlong', 'sitemaintenance'),
-                    'admin');
+                array('maintenancemodeisscheduled', 'maintenancemodeisscheduledlong', 'sitemaintenance'),
+                'admin');
         }
         return $output;
     }
@@ -846,7 +846,7 @@ class core_renderer extends renderer_base {
 
         if (!empty($CFG->debugpageinfo)) {
             $output .= '<div class="performanceinfo pageinfo">' . get_string('pageinfodebugsummary', 'core_admin',
-                $this->page->debug_summary()) . '</div>';
+                    $this->page->debug_summary()) . '</div>';
         }
         if (debugging(null, DEBUG_DEVELOPER) and has_capability('moodle/site:config', context_system::instance())) {  // Only in developer mode
             // Add link to profiling report if necessary
@@ -860,7 +860,7 @@ class core_renderer extends renderer_base {
             $purgeurl = new moodle_url('/admin/purgecaches.php', array('confirm' => 1,
                 'sesskey' => sesskey(), 'returnurl' => $this->page->url->out_as_local_url(false)));
             $output .= '<div class="purgecaches">' .
-                    html_writer::link($purgeurl, get_string('purgecaches', 'admin')) . '</div>';
+                html_writer::link($purgeurl, get_string('purgecaches', 'admin')) . '</div>';
         }
         if (!empty($CFG->debugvalidators)) {
             // NOTE: this is not a nice hack, $PAGE->url is not always accurate and $FULLME neither, it is not a bug if it fails. --skodak
@@ -1175,11 +1175,11 @@ class core_renderer extends renderer_base {
 //        } else
         if ($this->page->course->id == $SITE->id || strpos($this->page->pagetype, 'course-view') === 0) {
             return '<div class="homelink"><a href="' . $CFG->wwwroot . '/">' .
-                    get_string('home') . '</a></div>';
+                get_string('home') . '</a></div>';
 
         } else {
             return '<div class="homelink"><a href="' . $CFG->wwwroot . '/course/view.php?id=' . $this->page->course->id . '">' .
-                    format_string($this->page->course->shortname, true, array('context' => $this->page->context)) . '</a></div>';
+                format_string($this->page->course->shortname, true, array('context' => $this->page->context)) . '</a></div>';
         }
     }
 
@@ -1322,7 +1322,7 @@ class core_renderer extends renderer_base {
 
         // If this theme version is below 2.4 release and this is a course view page
         if ((!isset($this->page->theme->settings->version) || $this->page->theme->settings->version < 2012101500) &&
-                $this->page->pagelayout === 'course' && $this->page->url->compare(new moodle_url('/course/view.php'), URL_MATCH_BASE)) {
+            $this->page->pagelayout === 'course' && $this->page->url->compare(new moodle_url('/course/view.php'), URL_MATCH_BASE)) {
             // check if course content header/footer have not been output during render of theme layout
             $coursecontentheader = $this->course_content_header(true);
             $coursecontentfooter = $this->course_content_footer(true);
@@ -1461,9 +1461,9 @@ class core_renderer extends renderer_base {
         $bodynotifications = '';
         foreach ($notifications as $notification) {
             $bodynotifications .= $this->render_from_template(
-                    $notification->get_template_name(),
-                    $notification->export_for_template($this)
-                );
+                $notification->get_template_name(),
+                $notification->export_for_template($this)
+            );
         }
 
         $output = html_writer::span($bodynotifications, 'notifications', array('id' => 'user-notifications'));
@@ -1913,16 +1913,16 @@ class core_renderer extends renderer_base {
         return $this->action_link($url, $text.$icon, $action, $attributes);
     }
 
-   /**
-    * Print a message along with button choices for Continue/Cancel
-    *
-    * If a string or moodle_url is given instead of a single_button, method defaults to post.
-    *
-    * @param string $message The question to ask the user
-    * @param single_button|moodle_url|string $continue The single_button component representing the Continue answer. Can also be a moodle_url or string URL
-    * @param single_button|moodle_url|string $cancel The single_button component representing the Cancel answer. Can also be a moodle_url or string URL
-    * @return string HTML fragment
-    */
+    /**
+     * Print a message along with button choices for Continue/Cancel
+     *
+     * If a string or moodle_url is given instead of a single_button, method defaults to post.
+     *
+     * @param string $message The question to ask the user
+     * @param single_button|moodle_url|string $continue The single_button component representing the Continue answer. Can also be a moodle_url or string URL
+     * @param single_button|moodle_url|string $cancel The single_button component representing the Cancel answer. Can also be a moodle_url or string URL
+     * @return string HTML fragment
+     */
     public function confirm($message, $continue, $cancel) {
         if ($continue instanceof single_button) {
             // ok
@@ -2027,7 +2027,7 @@ class core_renderer extends renderer_base {
      * @return string HTML fragment
      */
     public function single_select($url, $name, array $options, $selected = '',
-                                $nothing = array('' => 'choosedots'), $formid = null, $attributes = array()) {
+                                  $nothing = array('' => 'choosedots'), $formid = null, $attributes = array()) {
         if (!($url instanceof moodle_url)) {
             $url = new moodle_url($url);
         }
@@ -2801,8 +2801,8 @@ EOD;
         }
 
         $message = '<p class="errormessage">' . $message . '</p>'.
-                '<p class="errorcode"><a href="' . $moreinfourl . '">' .
-                get_string('moreinformation') . '</a></p>';
+            '<p class="errorcode"><a href="' . $moreinfourl . '">' .
+            get_string('moreinformation') . '</a></p>';
         if (empty($CFG->rolesactive)) {
             $message .= '<p class="errormessage">' . get_string('installproblem', 'error') . '</p>';
             //It is usually not possible to recover from errors triggered during installation, you may need to create a new database or use a different database prefix for new installation.
@@ -3100,7 +3100,7 @@ EOD;
     public function container_start($classes = null, $id = null) {
         $this->opencontainers->push('container', html_writer::end_tag('div'));
         return html_writer::start_tag('div', array('id' => $id,
-                'class' => renderer_base::prepare_classes($classes)));
+            'class' => renderer_base::prepare_classes($classes)));
     }
 
     /**
@@ -3206,10 +3206,10 @@ EOD;
             'size' => 13, 'tabindex' => -1, 'id' => 'id_q_' . $id, 'class' => 'form-control');
 
         $contents = html_writer::tag('label', get_string('enteryoursearchquery', 'search'),
-            array('for' => 'id_q_' . $id, 'class' => 'accesshide')) . html_writer::tag('input', '', $inputattrs);
+                array('for' => 'id_q_' . $id, 'class' => 'accesshide')) . html_writer::tag('input', '', $inputattrs);
         if ($this->page->context && $this->page->context->contextlevel !== CONTEXT_SYSTEM) {
             $contents .= html_writer::empty_tag('input', ['type' => 'hidden',
-                    'name' => 'context', 'value' => $this->page->context->id]);
+                'name' => 'context', 'value' => $this->page->context->id]);
         }
         $searchinput = html_writer::tag('form', $contents, $formattrs);
 
@@ -3295,24 +3295,33 @@ EOD;
             $registerurl = new moodle_url('/login/signup.php');
             $htmlstr = html_writer::div(
                 html_writer::tag("button",
-                    "Register",
-                    array('class' => $siteadminbutton, 'style' => 'background-color:#5aa264;color:#ffffff', 'onclick' => 'location.href="'.$registerurl.'";')
+                    "Request Info",
+                    array('class' => $siteadminbutton, 'style' => 'background-color:#ffe900;color:#000000;font-weight: 700;padding-left:1.7rem;padding-right:1.7rem;padding-top:0.7rem;padding-bottom:0.7rem;border-radius:4px', 'onclick' => 'location.href="'.$registerurl.'";')
                 ),
                 $coursecontrolsclasses
             );
 
+            $registerurl = new moodle_url('/login/signup.php');
+            $htmlstr = $htmlstr.html_writer::div(
+                    html_writer::tag("button",
+                        "Register",
+                        array('class' => $siteadminbutton, 'style' => 'background-color:#5aa264;color:#ffffff;font-weight: 700;padding-left:2.1rem;padding-right:2.1rem;padding-top:0.7rem;padding-bottom:0.7rem;border-radius:4px', 'onclick' => 'location.href="'.$registerurl.'";')
+                    ),
+                    $coursecontrolsclasses
+                );
+
             $returnstr = "";
-            if (!$loginpage) {
-                $returnstr .= "    <a href=\"$loginurl\">" . get_string('login') . '</a>';
-            }
+            //if (!$loginpage) {
+            //    $returnstr .= "    <a href=\"$loginurl\">" . get_string('login') . '</a>';
+            //}
 
             $htmlstr = $htmlstr.html_writer::div(
-                html_writer::span(
-                    $returnstr,
-                    'login'
-                ),
-                $usermenuclasses
-            );
+                    html_writer::span(
+                        $returnstr,
+                        'login'
+                    ),
+                    $usermenuclasses
+                );
             return $htmlstr;
 
         }
@@ -3426,10 +3435,10 @@ EOD;
                             $pix = new pix_icon($value->pix, '', null, array('class' => 'iconsmall'));
                         } else if (isset($value->imgsrc) && !empty($value->imgsrc)) {
                             $value->title = html_writer::img(
-                                $value->imgsrc,
-                                $value->title,
-                                array('class' => 'iconsmall')
-                            ) . $value->title;
+                                    $value->imgsrc,
+                                    $value->title,
+                                    array('class' => 'iconsmall')
+                                ) . $value->title;
                         }
 
                         $al = new action_menu_link_secondary(
@@ -4103,7 +4112,7 @@ EOD;
         if ($this->should_display_main_logo($headinglevel)) {
             $sitename = format_string($SITE->fullname, true, array('context' => context_course::instance(SITEID)));
             return html_writer::div(html_writer::empty_tag('img', [
-                    'src' => $this->get_logo_url(null, 150), 'alt' => $sitename, 'class' => 'img-fluid']), 'logo');
+                'src' => $this->get_logo_url(null, 150), 'alt' => $sitename, 'class' => 'img-fluid']), 'logo');
         }
 
         // Make sure to use the heading if it has been set.
@@ -4158,18 +4167,18 @@ EOD;
                         $contacturlaction = $iscontact ? 'removecontact' : 'addcontact';
                         $contactimage = $iscontact ? 'removecontact' : 'addcontact';
                         $userbuttons['togglecontact'] = array(
-                                'buttontype' => 'togglecontact',
-                                'title' => get_string($contacttitle, 'message'),
-                                'url' => new moodle_url('/message/index.php', array(
-                                        'user1' => $USER->id,
-                                        'user2' => $user->id,
-                                        $contacturlaction => $user->id,
-                                        'sesskey' => sesskey())
-                                ),
-                                'image' => $contactimage,
-                                'linkattributes' => \core_message\helper::togglecontact_link_params($user, $iscontact),
-                                'page' => $this->page
-                            );
+                            'buttontype' => 'togglecontact',
+                            'title' => get_string($contacttitle, 'message'),
+                            'url' => new moodle_url('/message/index.php', array(
+                                    'user1' => $USER->id,
+                                    'user2' => $user->id,
+                                    $contacturlaction => $user->id,
+                                    'sesskey' => sesskey())
+                            ),
+                            'image' => $contactimage,
+                            'linkattributes' => \core_message\helper::togglecontact_link_params($user, $iscontact),
+                            'page' => $this->page
+                        );
                     }
 
                     $this->page->requires->string_for_js('changesmadereallygoaway', 'moodle');
@@ -4199,12 +4208,12 @@ EOD;
         return $this->render_from_template('core/skip_links', $context);
     }
 
-     /**
-      * Renders the header bar.
-      *
-      * @param context_header $contextheader Header bar object.
-      * @return string HTML for the header bar.
-      */
+    /**
+     * Renders the header bar.
+     *
+     * @param context_header $contextheader Header bar object.
+     * @return string HTML for the header bar.
+     */
     protected function render_context_header(context_header $contextheader) {
 
         $showheader = empty($this->page->layout_options['nocontextheader']);
@@ -4299,15 +4308,15 @@ EOD;
 
         // We are on the course home page.
         if (($context->contextlevel == CONTEXT_COURSE) &&
-                !empty($currentnode) &&
-                ($currentnode->type == navigation_node::TYPE_COURSE || $currentnode->type == navigation_node::TYPE_SECTION)) {
+            !empty($currentnode) &&
+            ($currentnode->type == navigation_node::TYPE_COURSE || $currentnode->type == navigation_node::TYPE_SECTION)) {
             $showcoursemenu = true;
         }
 
         $courseformat = course_get_format($this->page->course);
         // This is a single activity course format, always show the course menu on the activity main page.
         if ($context->contextlevel == CONTEXT_MODULE &&
-                !$courseformat->has_view_page()) {
+            !$courseformat->has_view_page()) {
 
             $this->page->navigation->initialise();
             $activenode = $this->page->navigation->find_active_node();
@@ -4315,7 +4324,7 @@ EOD;
             if ($this->page->is_settings_menu_forced()) {
                 $showcoursemenu = true;
             } else if (!empty($activenode) && ($activenode->type == navigation_node::TYPE_ACTIVITY ||
-                            $activenode->type == navigation_node::TYPE_RESOURCE)) {
+                    $activenode->type == navigation_node::TYPE_RESOURCE)) {
 
                 // We only want to show the menu on the first page of the activity. This means
                 // the breadcrumb has no additional nodes.
@@ -4327,15 +4336,15 @@ EOD;
 
         // This is the site front page.
         if ($context->contextlevel == CONTEXT_COURSE &&
-                !empty($currentnode) &&
-                $currentnode->key === 'home') {
+            !empty($currentnode) &&
+            $currentnode->key === 'home') {
             $showfrontpagemenu = true;
         }
 
         // This is the user profile page.
         if ($context->contextlevel == CONTEXT_USER &&
-                !empty($currentnode) &&
-                ($currentnode->key === 'myprofile')) {
+            !empty($currentnode) &&
+            ($currentnode->key === 'myprofile')) {
             $showusermenu = true;
         }
 
@@ -4390,9 +4399,9 @@ EOD;
      * @return boolean nodesskipped - True if nodes were skipped in building the menu
      */
     protected function build_action_menu_from_navigation(action_menu $menu,
-            navigation_node $node,
-            $indent = false,
-            $onlytopleafnodes = false) {
+                                                         navigation_node $node,
+                                                         $indent = false,
+                                                         $onlytopleafnodes = false) {
         $skipped = false;
         // Build an action menu based on the visible nodes from this navigation tree.
         foreach ($node->children as $menuitem) {
@@ -4451,7 +4460,7 @@ EOD;
             if ($this->page->is_settings_menu_forced()) {
                 $buildmenu = true;
             } else if (!empty($node) && ($node->type == navigation_node::TYPE_ACTIVITY ||
-                            $node->type == navigation_node::TYPE_RESOURCE)) {
+                    $node->type == navigation_node::TYPE_RESOURCE)) {
 
                 $items = $this->page->navbar->get_items();
                 $navbarnode = end($items);
@@ -4592,7 +4601,7 @@ EOD;
         }
         $context->logourl = $url;
         $context->sitename = format_string($SITE->fullname, true,
-                ['context' => context_course::instance(SITEID), "escape" => false]);
+            ['context' => context_course::instance(SITEID), "escape" => false]);
 
         return $this->render_from_template('core/loginform', $context);
     }
@@ -4684,7 +4693,7 @@ EOD;
         }
         $context['logourl'] = $url;
         $context['sitename'] = format_string($SITE->fullname, true,
-                ['context' => context_course::instance(SITEID), "escape" => false]);
+            ['context' => context_course::instance(SITEID), "escape" => false]);
 
         return $this->render_from_template('core/signup_form_layout', $context);
     }
@@ -5101,7 +5110,7 @@ class core_renderer_maintenance extends core_renderer {
             $continue = new single_button($continue, get_string('continue'), 'post', true);
         } else {
             throw new coding_exception('The continue param to $OUTPUT->confirm() must be either a URL' .
-                                       ' (string/moodle_url) or a single_button instance.');
+                ' (string/moodle_url) or a single_button instance.');
         }
 
         if ($cancel instanceof single_button) {
@@ -5112,7 +5121,7 @@ class core_renderer_maintenance extends core_renderer {
             $cancel = new single_button($cancel, get_string('cancel'), 'get');
         } else {
             throw new coding_exception('The cancel param to $OUTPUT->confirm() must be either a URL' .
-                                       ' (string/moodle_url) or a single_button instance.');
+                ' (string/moodle_url) or a single_button instance.');
         }
 
         $output = $this->box_start('generalbox', 'notice');

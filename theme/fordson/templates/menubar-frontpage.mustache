@@ -1,0 +1,208 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    Page menubar.
+}}
+<style>
+#cssmenu,
+#cssmenu ul,
+#cssmenu li,
+#cssmenu a {
+  border: none;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+#cssmenu {
+  height: 49px;
+  display: block;
+  border: 1px solid;
+  border-radius: 5px;
+  width: auto;
+  border-color: #2765b8;
+  margin: 0;
+  padding: 0;
+}
+#cssmenu > ul {
+  list-style: inside none;
+  margin: 0;
+  padding: 0;
+}
+#cssmenu > ul > li {
+  list-style: inside none;
+  float: left;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+#cssmenu.align-center > ul {
+  text-align: center;
+}
+#cssmenu.align-center > ul > li {
+  float: none;
+  margin-left: -3px;
+}
+#cssmenu.align-center ul ul {
+  text-align: left;
+}
+#cssmenu.align-center > ul > li:first-child > a {
+  border-radius: 0;
+}
+#cssmenu > ul > li > a {
+  outline: none;
+  display: block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  padding: 16px 24px;
+}
+#cssmenu > ul > li:first-child > a {
+  border-radius: 5px 0 0 5px;
+}
+#cssmenu > ul > li > a:after {
+  content: "";
+  position: absolute;
+  border-right: 1px solid;
+  top: -1px;
+  bottom: 1px;
+  right: -2px;
+  z-index: 99;
+  border-color: #2765b8;
+}
+#cssmenu ul li.has-sub:hover > a:after {
+  top: 0;
+  bottom: 0;
+}
+#cssmenu > ul > li.has-sub > a:before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: 6px;
+  border: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+}
+#cssmenu > ul > li.has-sub:hover > a:before {
+  top: 19px;
+}
+#cssmenu > ul > li.has-sub:hover > a {
+  padding-bottom: 16px;
+  z-index: 999;
+  border-color: #3f3f3f;
+}
+#cssmenu ul li.has-sub:hover > ul,
+#cssmenu ul li.has-sub:hover > div {
+  display: block;
+}
+#cssmenu > ul > li.has-sub > a:hover,
+#cssmenu > ul > li.has-sub:hover > a {
+  background: #2765b8;
+  border-color: #2765b8;
+}
+#cssmenu ul li > ul,
+#cssmenu ul li > div {
+  display: none;
+  width: auto;
+  position: absolute;
+  top: 48px;
+  background: #2765b8;
+  border-radius: 0 0 5px 5px;
+  z-index: 999;
+  padding: 10px 0;
+}
+#cssmenu ul li > ul {
+  width: 200px;
+}
+#cssmenu ul ul ul {
+  position: absolute;
+}
+#cssmenu ul ul li:hover > ul {
+  left: 100%;
+  top: -10px;
+  border-radius: 5px;
+}
+#cssmenu ul li > ul li {
+  display: block;
+  list-style: inside none;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+#cssmenu ul li > ul li a {
+  outline: none;
+  display: block;
+  position: relative;
+  font: 10pt Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  margin: 0;
+  padding: 16px 24px;
+}
+#cssmenu,
+#cssmenu ul ul > li:hover > a,
+#cssmenu ul ul li a:hover {
+  background: #2765b8;
+  background: -moz-linear-gradient(top, #2765b8 0%, #9893fb 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2765b8), color-stop(100%, #9893fb));
+  background: -webkit-linear-gradient(top, #2765b8 0%, #9893fb 100%);
+  background: -o-linear-gradient(top, #2765b8 0%, #9893fb 100%);
+  background: -ms-linear-gradient(top, #2765b8 0%, #9893fb 100%);
+  background: linear-gradient(top, #2765b8 0%, #9893fb 100%);
+}
+#cssmenu > ul > li > a:hover {
+  background: #2765b8;
+  color: #ffe900;
+}
+#cssmenu ul ul a:hover {
+  color: #ffffff;
+}
+#cssmenu > ul > li.has-sub > a:hover:before {
+  border-top: 5px solid #ffffff;
+}
+</style>
+<nav class="navbar-dark menubar-fhs navbar-expand moodle-has-zindex" style="background-color: #2765b8;width: -webkit-fill-available;">
+
+<div id='cssmenu'>
+<ul>
+   <li class='active has-sub'><a href='#'><span>Programs</span></a>
+      <ul>
+         <li class='has-sub'><a href='#'><span>Empowerment</span></a>
+         </li>
+         <li class='has-sub'><a href='#'><span>Education</span></a>
+         </li>
+      </ul>
+   </li>
+   <li class='active has-sub'><a href='#'><span>About</span></a>
+      <ul>
+         <li class='has-sub'><a href='#'><span>Educational Alliances</span></a>
+         </li>
+         <li class='has-sub'><a href='#'><span>Leadership Team</span></a></li>
+         <li class='has-sub'><a href='#'><span>History & Mission</span></a></li>
+         <li class='has-sub'><a href='#'><span>Offices</span></a></li>
+      </ul>
+   </li>
+   <li class='last pull-right'><a href='/login/index.php'><span>Login</span></a></li>
+</ul>
+</div>
+
+</nav>

@@ -55,6 +55,7 @@ $blockshtmlc = $OUTPUT->blocks('fp-c');
 $hasfpblockregion = ($PAGE->theme->settings->blockdisplay == 1) !== false;
 
 $regionmainsettingsmenu = $OUTPUT->region_main_settings_menu();
+$isloggedin = isloggedin();
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, array('context' => context_course::instance(SITEID))),
     'output' => $OUTPUT,
@@ -71,6 +72,7 @@ $templatecontext = [
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     'enrolform' => $enrolform,
+    'isloggedin' => $isloggedin,
 ];
 
 $PAGE->requires->jquery();

@@ -43,12 +43,12 @@ class theme_fordson_format_weeks_renderer extends format_weeks_renderer {
         $completioninfo = new completion_info($course);
         $cancomplete = isloggedin() && !isguestuser();
         $modinfo = get_fast_modinfo($course);
-        
+
         $sectionmods = array();
         $completioninfo = new completion_info($course);
         if (!empty($modinfo->sections[$section->section])) {
             foreach ($modinfo->sections[$section->section] as $cmid) {
-                
+
                 $thismod = $modinfo->cms[$cmid];
 
                 if ($thismod->modname == 'label') {
@@ -206,7 +206,7 @@ class theme_fordson_format_weeks_renderer extends format_weeks_renderer {
         // Output Link to Topic modules.
         // $title = get_section_name($course, $section);
         $linktitle = get_string('viewsectionmodules', 'theme_fordson');
-        $output = html_writer::link(new moodle_url('/course/view.php', array('id' => $PAGE->course->id, 'section' => $section->section)) , $linktitle, array('class' => 'section-go-link btn btn-secondary'));
+        $output = html_writer::link(new moodle_url('/course/view.php', array('id' => $PAGE->course->id, 'section' => $section->section)) , $linktitle, array('class' => 'section-go-link btn btn-primary'));
 
         // Output section activities summary
         $output .= html_writer::start_tag('div', array(

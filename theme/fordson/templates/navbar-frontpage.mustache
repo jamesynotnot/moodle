@@ -17,21 +17,15 @@
 {{!
     Page navbar.
 }}
-<nav class="fixed-top navbar navbar-fhs {{#output.show_teacher_navbarcolor}}navbar-teacher{{/output.show_teacher_navbarcolor}} {{#output.show_student_navbarcolor}}navbar-student{{/output.show_student_navbarcolor}} navbar-expand moodle-has-zindex">
-    {{#hasfhsdrawer}}
-        <div data-region="drawer-toggle" class="d-inline-block mr-3">
-            <button aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}" aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left mr-1 btn-secondary" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav">{{#pix}}i/menubars{{/pix}}<span class="sr-only">{{#str}}sidepanel, core{{/str}}</span></button>
-        </div>
-    {{/hasfhsdrawer}}
+<nav class="fixed-top navbar navbar-fhs navbar-expand moodle-has-zindex" style="max-height:325px;max-width:1024px;margin:auto">
         <a href="{{{ config.wwwroot }}}" class="navbar-brand {{# output.should_display_navbar_logo }}has-logo{{/ output.should_display_navbar_logo }}
             {{^ output.should_display_navbar_logo }}
-                d-none d-sm-inline
+                d-sm-inline
             {{/ output.should_display_navbar_logo }}
                 ">
-            <span class="logo d-none d-sm-inline">
-                <img src="{{output.get_compact_logo_url}}" alt="{{sitename}}">
+            <span class="logo d-sm-inline">
+                <img src="{{output.get_logo_url}}" alt="{{sitename}}" style="max-height:135px;padding-left:20px">
             </span>
-            <span class="site-name d-none d-md-inline">{{{ sitename }}}</span>
         </a>
 
         <!-- course_controls -->
@@ -40,18 +34,10 @@
             {{{ output.edit_button_fhs }}}
         </div>
 
-        <ul class="navbar-nav d-none d-md-flex">
-            <!-- custom_menu
-            {{{ output.fordson_custom_menu }}}
-            {{{ output.custom_menu }}}
-            -->
-            <!-- page_heading_menu -->
-            {{{ output.page_heading_menu }}}
-        </ul>
         <ul class="nav navbar-nav ml-auto">
             <div class="d-none d-lg-block">
             {{{ output.search_box }}}
-        </div>
+            </div>
             <!-- navbar_plugin_output -->
             <li class="nav-item">
             {{{ output.navbar_plugin_output }}}
@@ -61,6 +47,10 @@
                 {{{ output.user_menu }}}
             </li>
         </ul>
-        <!-- search_box -->
-</nav>
 
+        <nav class="navbar menubar-fhs navbar-expand moodle-has-zindex" style="position:fixed;top:155px;left:0px;right:0px;max-height:225px;max-width:1023px;margin:auto;z-index:1040;width:-webkit-fill-available;">
+            <ul class="nav navbar-nav ml-auto" style="width:-webkit-fill-available;">
+                {{>theme_fordson/menubar-frontpage}}
+            </ul>
+        </nav>
+</nav>
