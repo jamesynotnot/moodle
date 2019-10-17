@@ -32,6 +32,8 @@ if ($data = $action_form->get_data()) {
 $user_bulk_form = new user_bulk_form(null, get_selection_data($ufiltering));
 
 if ($data = $user_bulk_form->get_data()) {
+//    $SESSION->bulk_users[3] = 3;
+
     if (!empty($data->addall)) {
         add_selection_all($ufiltering);
 

@@ -59,7 +59,7 @@
 }
 
 /**
-* login on frontpage 
+* login on frontpage
 **/
 
 body#page-login-index, body#page-login-signup{
@@ -828,8 +828,8 @@ ul.teacherscourseview {
     background-color: $activityhover;
 }
 
-/** 
-* TIDY UP 
+/**
+* TIDY UP
 **/
 
 #page-header .singlebutton {
@@ -958,6 +958,60 @@ ul.teacherscourseview {
     }
   }
 }
+
+// FHS Menubar
+.menubar-fhs {
+    .menubar-brand {
+        color: $menubar-fhs-active-color;
+
+        @include hover-focus {
+            color: $menubar-fhs-active-color;
+        }
+    }
+
+    .menubar-nav {
+        .nav-link {
+            color: $menubar-fhs-color;
+            font-size: 1.3rem;
+
+            @include hover-focus {
+                color: $menubar-fhs-hover-color;
+            }
+
+            &.disabled {
+                color: $menubar-fhs-disabled-color;
+            }
+        }
+
+        .show > .nav-link,
+        .active > .nav-link,
+        .nav-link.show,
+        .nav-link.active {
+            color: $menubar-fhs-active-color;
+        }
+    }
+
+    .menubar-toggler {
+        color: $menubar-fhs-color;
+        border-color: $menubar-fhs-toggler-border-color;
+    }
+
+    .menubar-toggler-icon {
+        background-image: $menubar-fhs-toggler-icon-bg;
+    }
+
+    .menubar-text {
+        color: $menubar-fhs-color;
+        a {
+            color: $menubar-fhs-active-color;
+
+            @include hover-focus {
+                color: $menubar-fhs-active-color;
+            }
+        }
+    }
+}
+
 span.userbutton {
     color: $navbar-fhs-color;
 }
@@ -1088,7 +1142,7 @@ div#page.container-fluid {
 
 @if $gutterwidth == 0rem {
     .row {
-        margin-right: $gutterwidth; 
+        margin-right: $gutterwidth;
         margin-left: $gutterwidth;
     }
     .col-12 {
@@ -1098,7 +1152,7 @@ div#page.container-fluid {
     #page-wrapper {
         padding-bottom: $gutterwidth;
     }
-    
+
 }
 
 @media screen and (max-width: 576px) {
