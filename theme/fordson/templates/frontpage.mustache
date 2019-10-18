@@ -109,7 +109,8 @@
                             {{{ output.fp_marketingtiles }}}
                             {{{ output.course_content_footer }}}
 
-                            {{#hasfpblockregion}}
+                            {{#isadmin}}
+                              {{#hasfpblockregion}}
                                 <div class="fp-blocks">
                                     <div class="container-fluid">
                                         <div class="row">
@@ -131,8 +132,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            {{/hasfpblockregion}}
-                            
+                              {{/hasfpblockregion}}
+                            {{/isadmin}}
+
                 </section>
 
                 {{#hasblocks}}
