@@ -5,12 +5,6 @@
 $CFG = new stdClass;
 $CFG->dbtype = 'pgsql';
 $CFG->dblibrary = 'native';
-//$CFG->dbhost = 'destinyedu-moodle-rds-1cnmsnegllv-databasecluster-1ogch1irkeyio.cluster-cnblvmibsmpc.us-east-2.rds.amazonaws.com';
-//$CFG->dbhost = 'moodle-3-6-cluster.cluster-cnblvmibsmpc.us-east-2.rds.amazonaws.com';
-$CFG->dbhost = 'destinyedu-m371a-rds-1cnmsnegllv-databasecluster-cluster.cluster-cnblvmibsmpc.us-east-2.rds.amazonaws.com';
-$CFG->dbname = 'moodle';
-$CFG->dbuser = 'moodle';
-$CFG->dbpass = 'MCW32020~!';
 $CFG->prefix = 'mdl_';
 $CFG->lang = 'en';
 $CFG->dboptions = array(
