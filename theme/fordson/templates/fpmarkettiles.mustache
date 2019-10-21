@@ -6,14 +6,14 @@
         {{#markettiles}}
         {{#hastile}}
 
-        <div class="col-md-4">
-        <div class="market-tile"> 
-            <h3 class="card-title">{{{title}}}</h3>
-            <div class="marketcontent {{{tileimage}}}">
-            <p>{{{content}}}<p>
+        <div class="col-md-5">
+        <a href="{{tileurl}}" title="{{tiletitle}}" alt="{{tiletitle}}" target="_self">
+            <div class="market-tile">
+                <div class="marketcontent {{{tileimage}}}">
+                <p>{{{content}}}<p>
+                </div>
             </div>
-            {{{button}}}
-        </div>
+        </a>
         </div>
 
         {{/hastile}}

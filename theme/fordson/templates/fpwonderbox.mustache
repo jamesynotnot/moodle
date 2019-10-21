@@ -25,7 +25,7 @@
                         {{#fpslideicon}}
                             {{#hasicon}}
                                 <div class="btn btn-secondary">
-                                    <a role="button" data-toggle="collapse" href="#fpslider" aria-expanded="false" aria-controls="fpslider" title = "{{{linktext}}}" alt="{{{linktext}}}"> 
+                                    <a role="button" data-toggle="collapse" href="#fpslider" aria-expanded="false" aria-controls="fpslider" title = "{{{linktext}}}" alt="{{{linktext}}}">
                                         <div class="navicon" align="center">
                                             <i class="fa fa-3x fa-{{{linkicon}}}"></i>
                                         </div>
@@ -47,7 +47,7 @@
                                 </div>
                             {{/hasicon}}
                         {{/fpcreateicon}}
-                        
+
                     </div>
                 </div>
                 </div>
@@ -141,14 +141,14 @@
         {{#markettiles}}
         {{#hastile}}
 
-        <div class="col-md-4">
-        <div class="market-tile"> 
-            <h3 class="card-title">{{{title}}}</h3>
-            <div class="marketcontent {{{tileimage}}}">
-            <p>{{{content}}}<p>
+        <div class="col-md-5">
+        <a href="{{tileurl}}" title="{{tiletitle}}" alt="{{tiletitle}}" target="_self">
+            <div class="market-tile">
+                <div class="marketcontent {{{tileimage}}}">
+                <p>{{{content}}}<p>
+                </div>
             </div>
-            {{{button}}} 
-        </div>
+        </a>
         </div>
 
         {{/hastile}}
