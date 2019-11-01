@@ -81,30 +81,14 @@
         <div id="page-content" class="row">
 
             <div id="region-main-box" class="col-12">
-<!--
-                <nav class="navbar menubar-fhs navbar-expand moodle-has-zindex" style="position:fixed;top:155px;max-height:325px;max-width:1023px;margin:auto;z-index:1040;width:-webkit-fill-available;">
-                    <ul class="nav navbar-nav ml-auto" style="width:-webkit-fill-available;">
-                        {{>theme_fordson/menubar-frontpage}}
-                    </ul>
-                </nav>
--->
+
                 {{#hasregionmainsettingsmenu}}
                 <div id="region-main-settings-menu" class="hidden-print {{#hasblocks}}has-blocks mb-3{{/hasblocks}}">
                     <div> {{{ output.region_main_settings_menu }}} </div>
                 </div>
                 {{/hasregionmainsettingsmenu}}
                 <section id="region-main" {{#hasblocks}}class="has-blocks"{{/hasblocks}} style="padding-top:2.95rem;">
-<!--
-                            {{#hasregionmainsettingsmenu}}
-                                <div class="region_main_settings_menu_proxy"></div>
-                            {{/hasregionmainsettingsmenu}}
-
-                            {{{ output.course_content_header }}}
-
-                            {{{ enrolform }}}
-
                             {{{ output.fp_wonderbox }}}
--->
                             {{{ output.main_content }}}
                             {{{ output.fp_marketingtiles }}}
                             {{{ output.course_content_footer }}}
