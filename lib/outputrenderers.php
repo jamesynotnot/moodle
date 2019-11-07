@@ -3295,8 +3295,8 @@ EOD;
             $registerurl = new moodle_url('/login/signup.php');
             $htmlstr = html_writer::div(
                 html_writer::tag("button",
-                    "Request Info",
-                    array('class' => $siteadminbutton, 'style' => 'background-color:#ffe900;color:#000000;font-weight: 700;padding-left:1.7rem;padding-right:1.7rem;padding-top:0.7rem;padding-bottom:0.7rem;border-radius:4px', 'onclick' => 'location.href="'.$registerurl.'";')
+                    "Empowerment Registration",
+                    array('class' => $siteadminbutton, 'style' => 'background-color:#5aa264;color:#ffffff;font-weight: 700;padding-left:2.1rem;padding-right:2.1rem;padding-top:0.7rem;padding-bottom:0.7rem;border-radius:4px', 'onclick' => 'location.href="'.$registerurl.'";')
                 ),
                 $coursecontrolsclasses
             );
@@ -3304,8 +3304,8 @@ EOD;
             $registerurl = new moodle_url('/login/signup.php');
             $htmlstr = $htmlstr.html_writer::div(
                     html_writer::tag("button",
-                        "Register",
-                        array('class' => $siteadminbutton, 'style' => 'background-color:#5aa264;color:#ffffff;font-weight: 700;padding-left:2.1rem;padding-right:2.1rem;padding-top:0.7rem;padding-bottom:0.7rem;border-radius:4px', 'onclick' => 'location.href="'.$registerurl.'";')
+                        "Request University Info",
+                        array('class' => $siteadminbutton, 'style' => 'background-color:#ffe900;color:#000000;font-weight: 700;padding-left:1.7rem;padding-right:1.7rem;padding-top:0.7rem;padding-bottom:0.7rem;border-radius:4px', 'onclick' => 'location.href="'.$registerurl.'";')
                     ),
                     $coursecontrolsclasses
                 );

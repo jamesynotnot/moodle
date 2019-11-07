@@ -8,5 +8,5 @@ RewriteRule ^team$ mod/page/view.php?id=321
 RewriteRule ^alliances$ mod/page/view.php?id=322
 RewriteRule ^mission$ mod/page/view.php?id=323
 RewriteRule ^programs$ mod/page/view.php?id=319
-RewriteRule ^empowerment$ mod/page/view.php?id=319
+RewriteRule ^empowerment$ course
 RewriteRule ^education$ mod/page/view.php?id=319
