@@ -230,9 +230,17 @@ class theme_fordson_format_topics_renderer extends format_topics_renderer {
             $a = new stdClass;
             $a->complete = $complete;
             $a->total = $total;
+            $statusstyle = '';
+            if ($complete > 0) {
+                $statusstyle = 'background-color:#ffb66b;color:#000000!important;padding: 2px 5px 2px 5px';
+            }
+            if ($complete == $total) {
+                $statusstyle = 'background-color:#6bff70;color:#000000!important;padding: 2px 5px 2px 5px';
+            }
             $output .= '<br>';
             $output .= html_writer::tag('span', get_string('progresstotal', 'completion', $a) , array(
-                'class' => 'activity-count'
+                'class' => 'activity-count',
+                'style' => $statusstyle
             ));
         }
 

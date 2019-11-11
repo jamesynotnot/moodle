@@ -228,8 +228,10 @@ if (!$viewobj->quizhasquestions) {
     }
 }
 
-$viewobj->showbacktocourse = ($viewobj->buttontext === '' &&
-        course_get_format($course)->has_view_page());
+$viewobj->showbacktocourse = (($viewobj->buttontext === '' ||
+        $viewobj->buttontext === get_string('attemptquiznow', 'quiz') ||
+        $viewobj->buttontext === get_string('reattemptquiz', 'quiz')) &&
+    course_get_format($course)->has_view_page());
 
 echo $OUTPUT->header();
 

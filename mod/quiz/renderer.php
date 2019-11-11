@@ -243,7 +243,8 @@ class mod_quiz_renderer extends plugin_renderer_base {
 
         } else {
             return html_writer::link($url, get_string('finishreview', 'quiz'),
-                    array('class' => 'mod_quiz-next-nav'));
+                array('class' => 'btn btn-primary', 'style' => 'float:right;'));
+
         }
     }
 
@@ -738,7 +739,9 @@ class mod_quiz_renderer extends plugin_renderer_base {
 
         $button = new single_button(
                 new moodle_url($attemptobj->processattempt_url(), $options),
-                get_string('submitallandfinish', 'quiz'));
+                get_string('submitallandfinish', 'quiz'),
+                'post',
+                true);
         $button->id = 'responseform';
         if ($attemptobj->get_state() == quiz_attempt::IN_PROGRESS) {
             $button->add_action(new confirm_action(get_string('confirmclose', 'quiz'), null,
@@ -813,7 +816,7 @@ class mod_quiz_renderer extends plugin_renderer_base {
         if ($viewobj->showbacktocourse) {
             $output .= $this->single_button($viewobj->backtocourseurl,
                     get_string('backtocourse', 'quiz'), 'get',
-                    array('class' => 'continuebutton'));
+                    array('class' => 'singlebutton'));
         }
 
         return $output;
