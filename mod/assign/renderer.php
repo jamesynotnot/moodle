@@ -772,26 +772,24 @@ class mod_assign_renderer extends plugin_renderer_base {
         }
 
         // Grading status.
-        if ($status->gradingstatus != ASSIGN_GRADING_STATUS_NOT_GRADED) {
-            $row = new html_table_row();
-            $cell1 = new html_table_cell(get_string('gradingstatus', 'assign'));
+        $row = new html_table_row();
+        $cell1 = new html_table_cell(get_string('gradingstatus', 'assign'));
 
-            if ($status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
-                $status->gradingstatus == ASSIGN_GRADING_STATUS_NOT_GRADED) {
-                $cell2 = new html_table_cell(get_string($status->gradingstatus, 'assign'));
-            } else {
-                $gradingstatus = 'markingworkflowstate' . $status->gradingstatus;
-                $cell2 = new html_table_cell(get_string($gradingstatus, 'assign'));
-            }
-            if ($status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
-                $status->gradingstatus == ASSIGN_MARKING_WORKFLOW_STATE_RELEASED) {
-                $cell2->attributes = array('class' => 'submissiongraded');
-            } else {
-                $cell2->attributes = array('class' => 'submissionnotgraded');
-            }
-            $row->cells = array($cell1, $cell2);
-            $t->data[] = $row;
+        if ($status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
+            $status->gradingstatus == ASSIGN_GRADING_STATUS_NOT_GRADED) {
+            $cell2 = new html_table_cell(get_string($status->gradingstatus, 'assign'));
+        } else {
+            $gradingstatus = 'markingworkflowstate' . $status->gradingstatus;
+            $cell2 = new html_table_cell(get_string($gradingstatus, 'assign'));
         }
+        if ($status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
+            $status->gradingstatus == ASSIGN_MARKING_WORKFLOW_STATE_RELEASED) {
+            $cell2->attributes = array('class' => 'submissiongraded');
+        } else {
+            $cell2->attributes = array('class' => 'submissionnotgraded');
+        }
+        $row->cells = array($cell1, $cell2);
+        $t->data[] = $row;
 
         $submission = $status->teamsubmission ? $status->teamsubmission : $status->submission;
         $duedate = $status->duedate;
