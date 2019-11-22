@@ -120,7 +120,7 @@ $coursestyle7 = get_string('coursestyle7', 'theme_fordson');
 $coursestyle8 = get_string('coursestyle8', 'theme_fordson');
 $coursestyle9 = get_string('coursestyle9', 'theme_fordson');
 $coursestyle10 = get_string('coursestyle10', 'theme_fordson');
-$default = '4';
+$default = '10';
 $choices = array('1'=>$coursestyle1, '2'=>$coursestyle2, '3'=>$coursestyle3, '4'=>$coursestyle4, '5'=>$coursestyle5, '6'=>$coursestyle6, '7'=>$coursestyle7, '8'=>$coursestyle8, '9'=>$coursestyle9, '10'=>$coursestyle10);
 $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
 $setting->set_updatedcallback('theme_reset_all_caches');
