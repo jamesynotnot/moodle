@@ -99,16 +99,16 @@ class login_signup_form extends moodleform implements renderable, templatable {
 
         $country = get_string_manager()->get_list_of_countries();
 
-        $host_country['NG'] = 'Nigeria';
-        $country = array_merge($host_country, $country);
-        $host_country['NE'] = 'Niger';
-        $country = array_merge($host_country, $country);
-        $host_country['TD'] = 'Chad';
-        $country = array_merge($host_country, $country);
-        $host_country['CM'] = 'Cameroon';
-        $country = array_merge($host_country, $country);
-        $host_country['BJ'] = 'Benin';
-        $country = array_merge($host_country, $country);
+//        $host_country['NG'] = 'Nigeria';
+//        $country = array_merge($host_country, $country);
+//        $host_country['NE'] = 'Niger';
+//        $country = array_merge($host_country, $country);
+//        $host_country['TD'] = 'Chad';
+//        $country = array_merge($host_country, $country);
+//        $host_country['CM'] = 'Cameroon';
+//        $country = array_merge($host_country, $country);
+//        $host_country['BJ'] = 'Benin';
+//        $country = array_merge($host_country, $country);
 
         $default_country[''] = get_string('selectacountry');
         $country = array_merge($default_country, $country);
@@ -164,6 +164,8 @@ class login_signup_form extends moodleform implements renderable, templatable {
             $iso_3166_country_code = 'CM';
         } else if (substr( $phone, 0, 4 ) === "+229") {
             $iso_3166_country_code = 'BE';
+        } else if (substr( $phone, 0, 4 ) === "+972") {
+            $iso_3166_country_code = 'IL';
         }
 
         return $iso_3166_country_code;
