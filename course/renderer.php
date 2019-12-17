@@ -55,7 +55,7 @@ class core_course_renderer extends plugin_renderer_base {
      * page load.
      * @var bool
      */
-    protected $categoryexpandedonload = false;
+    protected $categoryexpandedonload = true;
 
     /**
      * Override the constructor so that we can initialise the string cache
@@ -1542,7 +1542,7 @@ class core_course_renderer extends plugin_renderer_base {
      */
     protected function coursecat_tree(coursecat_helper $chelper, $coursecat) {
         // Reset the category expanded flag for this course category tree first.
-        $this->categoryexpandedonload = false;
+        $this->categoryexpandedonload = true;
         $categorycontent = $this->coursecat_category_content($chelper, $coursecat, 0);
         if (empty($categorycontent)) {
             return '';
