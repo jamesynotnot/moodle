@@ -166,6 +166,20 @@ class login_signup_form extends moodleform implements renderable, templatable {
             $iso_3166_country_code = 'BE';
         } else if (substr( $phone, 0, 4 ) === "+972") {
             $iso_3166_country_code = 'IL';
+        } else if (substr( $phone, 0, 4 ) === "+255") {
+            $iso_3166_country_code = 'TZ';
+        } else if (substr( $phone, 0, 4 ) === "+254") {
+            $iso_3166_country_code = 'KE';
+        } else if (substr( $phone, 0, 4 ) === "+252") {
+            $iso_3166_country_code = 'SO';
+        } else if (substr( $phone, 0, 4 ) === "+251") {
+            $iso_3166_country_code = 'ET';
+        } else if (substr( $phone, 0, 4 ) === "+256") {
+            $iso_3166_country_code = 'UG';
+        } else if (substr( $phone, 0, 4 ) === "+250") {
+            $iso_3166_country_code = 'RW';
+        } else if (substr( $phone, 0, 4 ) === "+257") {
+            $iso_3166_country_code = 'BI';
         }
 
         return $iso_3166_country_code;
