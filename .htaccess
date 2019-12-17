@@ -2,11 +2,27 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php [QSA]
+RewriteRule ^signup$ login/signup.php [QSA]
 RewriteRule ^about$ mod/page/view.php?id=319
 RewriteRule ^contact$ mod/page/view.php?id=320
 RewriteRule ^team$ mod/page/view.php?id=321
 RewriteRule ^alliances$ mod/page/view.php?id=322
 RewriteRule ^mission$ mod/page/view.php?id=323
 RewriteRule ^programs$ mod/page/view.php?id=319
-RewriteRule ^empowerment$ course
-RewriteRule ^education$ mod/page/view.php?id=319
+#RewriteRule ^empowerment$ course
+RewriteRule ^empowerment$ mod/page/view.php?id=410
+RewriteRule ^empowerment/teb$ mod/page/view.php?id=412
+RewriteRule ^wc2020$ mod/page/view.php?id=413
+RewriteRule ^education$ mod/page/view.php?id=411
+RewriteRule ^education/aba$ mod/page/view.php?id=398
+RewriteRule ^education/acj$ mod/page/view.php?id=399
+RewriteRule ^education/bac$ mod/page/view.php?id=400
+RewriteRule ^education/bba$ mod/page/view.php?id=401
+RewriteRule ^education/bfa$ mod/page/view.php?id=402
+RewriteRule ^education/bhm$ mod/page/view.php?id=403
+RewriteRule ^education/bcj$ mod/page/view.php?id=404
+RewriteRule ^education/bit$ mod/page/view.php?id=405
+RewriteRule ^education/mba$ mod/page/view.php?id=406
+RewriteRule ^education/med$ mod/page/view.php?id=407
+RewriteRule ^education/mhm$ mod/page/view.php?id=408
+RewriteRule ^education/mit$ mod/page/view.php?id=409
