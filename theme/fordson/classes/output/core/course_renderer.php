@@ -53,7 +53,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
         public function view_available_courses($id = 0, $courses = null, $totalcount = null) {
             /* available courses */
             global $CFG, $OUTPUT, $PAGE;
-
+            
             $rcourseids = array_keys($courses);
             $acourseids = array_chunk($rcourseids, 3);
             if ($PAGE->theme->settings->coursetilestyle == 8) {
@@ -92,7 +92,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                             'id' => $courseid
                         ));
 
-
+                        
                         $systemcontext = $PAGE->bodyid;
                         // Course completion Progress bar
                         if (\core_completion\progress::get_course_progress_percentage($course) && isloggedin() && $systemcontext == 'page-site-index') {
@@ -114,7 +114,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
 				            $compbar .= "</div>";
 				            $compbar .= "</div>";
 				            $progressbar = $compbar;
-				        } else {
+				        } else {	
 				        	$progressbar = '';
 				        	$completiontext = '';
 				        }
@@ -129,7 +129,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                             foreach ($icons as $pix_icon) {
                                 $pixcontent .= $this->render($pix_icon);
                             }
-                            $pixcontent .= html_writer::end_tag('div'); // .enrolmenticons
+                            $pixcontent .= html_writer::end_tag('div'); 
                         }
                         // display course category if necessary (for example in search results)
                         //require_once($CFG->libdir. '/coursecatlib.php');
@@ -139,12 +139,12 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                                     html_writer::link(new moodle_url('/course/index.php', array('categoryid' => $cat->id)),
                                             $cat->get_formatted_name(), array('class' => $cat->visible ? '' : 'dimmed'));
                             $catcontent .= $pixcontent;
-                            $catcontent .= html_writer::end_tag('div'); // .coursecat
-
+                            $catcontent .= html_writer::end_tag('div');
+                            
                         }
 
 
-
+                        
                         // Load from config if usea a img from course summary file if not exist a img then a default one ore use a fa-icon.
                         $imgurl = '';
                         $context = context_course::instance($course->id);
@@ -161,7 +161,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                                 $imgurl = $noimgurl;
                             }
                         }
-
+                        
                         $customfieldcontent = '';
 
                         // Display custom fields.
@@ -170,7 +170,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
 				            $customfields = $handler->display_custom_fields_data($course->get_custom_fields());
 				            $customfieldcontent = \html_writer::tag('div', $customfields, ['class' => 'customfields-container']);
 				        }
-
+                        
 
                         if ($PAGE->theme->settings->coursetilestyle == 1) {
                             $rowcontent .= '
@@ -187,7 +187,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                             else {
                                 $tooltiptext = '';
                             }
-
+                            
                             $rowcontent .= '
                                     <a ' . $tooltiptext . ' href="' . $courseurl . '">
                                     <div class="courseimagecontainer">
@@ -530,7 +530,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                             else {
                                 $tooltiptext = '';
                             }
-
+                            
                             $rowcontent .= html_writer::start_tag('div', array(
                                 'class' => $course->visible ? 'coursevisible col-md-12 d-flex flex-sm-row flex-column coursestyle9row' : 'coursedimmed9 col-md-12 d-flex flex-sm-row flex-column coursestyle9row'
                             ));
@@ -561,13 +561,13 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
 		                                }
 		                                $rowcontent .= html_writer::end_tag('ul');
 		                            }
-
+			                                  
 			                        $rowcontent .= '
 			                        	</div>
 		                                </div>';
 	                            }
 	                        if ($systemcontext == 'page-site-index' && $course->enablecompletion == 1) {
-
+	                        	
 	                            $rowcontent .= '
 	                            	<div class="col-md-6 row">
 		                            	<div class="col-md-4 text-right">
@@ -582,7 +582,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                             
 	                        </div>';
                         }
-
+                        
                     }
                     $content .= $rowcontent;
                     $content .= '</div> </div>';
@@ -591,7 +591,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
             $coursehtml = $header . $content . $footer;
             return $coursehtml;
         }
-
+        
         /**
          * Returns HTML to display the subcategories and courses in the given category
          *
@@ -976,7 +976,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                         $output .= $this->frontpage_remote_course($course);
                     }
                     $output .= html_writer::end_tag('div'); // .courses
-
+                    
                 }
                 elseif (!empty($rhosts)) {
                     // non-IDP, we know of all the remote servers, but not courses
@@ -987,7 +987,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                         $output .= $this->frontpage_remote_host($host);
                     }
                     $output .= html_writer::end_tag('div'); // .courses
-
+                    
                 }
             }
             return $output;

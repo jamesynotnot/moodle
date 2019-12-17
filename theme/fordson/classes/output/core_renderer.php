@@ -138,7 +138,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End withimage inline style div.
-
+            
         }
         else if (theme_fordson_get_setting('showcourseheaderimage') && !$courseimage && isset($headerbg)) {
             $html .= html_writer::start_div('customimage', array(
@@ -146,7 +146,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End withoutimage inline style div.
-
+            
         }
         else if ($courseimage && isset($headerbg) && !theme_fordson_get_setting('showcourseheaderimage')) {
             $html .= html_writer::start_div('customimage', array(
@@ -154,7 +154,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End withoutimage inline style div.
-
+            
         }
         else if (!$courseimage && isset($headerbg) && !theme_fordson_get_setting('showcourseheaderimage')) {
             $html .= html_writer::start_div('customimage', array(
@@ -162,7 +162,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End withoutimage inline style div.
-
+            
         }
         else {
             $html .= html_writer::start_div('default', array(
@@ -170,7 +170,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End default inline style div.
-
+            
         }
         $html .= html_writer::end_div();
         return $html;
@@ -377,7 +377,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 $thisbranchtitle = get_string('thismycourses', 'theme_fordson');
                 $homebranchtitle = get_string('homemycourses', 'theme_fordson');
             }
-
+            
             $branchlabel = $branchtitle;
             $branchurl = new moodle_url('/my/index.php');
             $branchsort = 10000;
@@ -386,10 +386,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
             $dashurl = new moodle_url("/my");
             $dashtitle = $dashlabel;
             $branch->add($dashlabel, $dashurl, $dashtitle);
-
+           
             if ($courses = enrol_get_my_courses(NULL, 'fullname ASC')) {
                 if (theme_fordson_get_setting('frontpagemycoursessorting')) {
-                $courses = enrol_get_my_courses(null, 'sortorder ASC');
+                $courses = enrol_get_my_courses(NULL, 'sortorder ASC');
                 $nomycourses = '<div class="alert alert-info alert-block">' . get_string('nomycourses', 'theme_fordson') . '</div>';
                 if ($courses) {
                     // We have something to work with.  Get the last accessed information for the user and populate.
@@ -457,7 +457,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             else {
                 $noenrolments = get_string('noenrolments', 'theme_fordson');
                 $branch->add('<em>' . $noenrolments . '</em>', new moodle_url('/') , $noenrolments);
-            }
+            } 
 
             $hasdisplaythiscourse = (empty($this->page->theme->settings->displaythiscourse)) ? false : $this->page->theme->settings->displaythiscourse;
             $sections = $this->generate_sections_and_activities($COURSE);
@@ -693,42 +693,42 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $alertbox = (empty($PAGE->theme->settings->alertbox)) ? false : format_text($PAGE->theme->settings->alertbox, FORMAT_HTML, array(
             'noclean' => true
         ));
-
+        
         $hasmarketing1 = (empty($PAGE->theme->settings->marketing1 && $PAGE->theme->settings->togglemarketing == 1)) ? false : format_string($PAGE->theme->settings->marketing1);
         $marketing1content = (empty($PAGE->theme->settings->marketing1content)) ? false : format_text($PAGE->theme->settings->marketing1content);
         $marketing1buttontext = (empty($PAGE->theme->settings->marketing1buttontext)) ? false : format_string($PAGE->theme->settings->marketing1buttontext);
         $marketing1buttonurl = (empty($PAGE->theme->settings->marketing1buttonurl)) ? false : $PAGE->theme->settings->marketing1buttonurl;
         $marketing1target = (empty($PAGE->theme->settings->marketing1target)) ? false : $PAGE->theme->settings->marketing1target;
         $marketing1image = (empty($PAGE->theme->settings->marketing1image)) ? false : 'marketing1image';
-
+        
         $hasmarketing2 = (empty($PAGE->theme->settings->marketing2 && $PAGE->theme->settings->togglemarketing == 1)) ? false : format_string($PAGE->theme->settings->marketing2);
         $marketing2content = (empty($PAGE->theme->settings->marketing2content)) ? false : format_text($PAGE->theme->settings->marketing2content);
         $marketing2buttontext = (empty($PAGE->theme->settings->marketing2buttontext)) ? false : format_string($PAGE->theme->settings->marketing2buttontext);
         $marketing2buttonurl = (empty($PAGE->theme->settings->marketing2buttonurl)) ? false : $PAGE->theme->settings->marketing2buttonurl;
         $marketing2target = (empty($PAGE->theme->settings->marketing2target)) ? false : $PAGE->theme->settings->marketing2target;
         $marketing2image = (empty($PAGE->theme->settings->marketing2image)) ? false : 'marketing2image';
-
+        
         $hasmarketing3 = (empty($PAGE->theme->settings->marketing3 && $PAGE->theme->settings->togglemarketing == 1)) ? false : format_string($PAGE->theme->settings->marketing3);
         $marketing3content = (empty($PAGE->theme->settings->marketing3content)) ? false : format_text($PAGE->theme->settings->marketing3content);
         $marketing3buttontext = (empty($PAGE->theme->settings->marketing3buttontext)) ? false : format_string($PAGE->theme->settings->marketing3buttontext);
         $marketing3buttonurl = (empty($PAGE->theme->settings->marketing3buttonurl)) ? false : $PAGE->theme->settings->marketing3buttonurl;
         $marketing3target = (empty($PAGE->theme->settings->marketing3target)) ? false : $PAGE->theme->settings->marketing3target;
         $marketing3image = (empty($PAGE->theme->settings->marketing3image)) ? false : 'marketing3image';
-
+        
         $hasmarketing4 = (empty($PAGE->theme->settings->marketing4 && $PAGE->theme->settings->togglemarketing == 1)) ? false : format_string($PAGE->theme->settings->marketing4);
         $marketing4content = (empty($PAGE->theme->settings->marketing4content)) ? false : format_text($PAGE->theme->settings->marketing4content);
         $marketing4buttontext = (empty($PAGE->theme->settings->marketing4buttontext)) ? false : format_string($PAGE->theme->settings->marketing4buttontext);
         $marketing4buttonurl = (empty($PAGE->theme->settings->marketing4buttonurl)) ? false : $PAGE->theme->settings->marketing4buttonurl;
         $marketing4target = (empty($PAGE->theme->settings->marketing4target)) ? false : $PAGE->theme->settings->marketing4target;
         $marketing4image = (empty($PAGE->theme->settings->marketing4image)) ? false : 'marketing4image';
-
+        
         $hasmarketing5 = (empty($PAGE->theme->settings->marketing5 && $PAGE->theme->settings->togglemarketing == 1)) ? false : format_string($PAGE->theme->settings->marketing5);
         $marketing5content = (empty($PAGE->theme->settings->marketing5content)) ? false : format_text($PAGE->theme->settings->marketing5content);
         $marketing5buttontext = (empty($PAGE->theme->settings->marketing5buttontext)) ? false : format_string($PAGE->theme->settings->marketing5buttontext);
         $marketing5buttonurl = (empty($PAGE->theme->settings->marketing5buttonurl)) ? false : $PAGE->theme->settings->marketing5buttonurl;
         $marketing5target = (empty($PAGE->theme->settings->marketing5target)) ? false : $PAGE->theme->settings->marketing5target;
         $marketing5image = (empty($PAGE->theme->settings->marketing5image)) ? false : 'marketing5image';
-
+        
         $hasmarketing6 = (empty($PAGE->theme->settings->marketing6 && $PAGE->theme->settings->togglemarketing == 1)) ? false : format_string($PAGE->theme->settings->marketing6);
         $marketing6content = (empty($PAGE->theme->settings->marketing6content)) ? false : format_text($PAGE->theme->settings->marketing6content);
         $marketing6buttontext = (empty($PAGE->theme->settings->marketing6buttontext)) ? false : format_string($PAGE->theme->settings->marketing6buttontext);
@@ -966,42 +966,42 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $marketing1buttonurl = (empty($PAGE->theme->settings->marketing1buttonurl)) ? false : $PAGE->theme->settings->marketing1buttonurl;
         $marketing1target = (empty($PAGE->theme->settings->marketing1target)) ? false : $PAGE->theme->settings->marketing1target;
         $marketing1image = (empty($PAGE->theme->settings->marketing1image)) ? false : 'marketing1image';
-
+        
         $hasmarketing2 = (empty($PAGE->theme->settings->marketing2 && $PAGE->theme->settings->togglemarketing == 2)) ? false : format_string($PAGE->theme->settings->marketing2);
         $marketing2content = (empty($PAGE->theme->settings->marketing2content)) ? false : format_text($PAGE->theme->settings->marketing2content);
         $marketing2buttontext = (empty($PAGE->theme->settings->marketing2buttontext)) ? false : format_string($PAGE->theme->settings->marketing2buttontext);
         $marketing2buttonurl = (empty($PAGE->theme->settings->marketing2buttonurl)) ? false : $PAGE->theme->settings->marketing2buttonurl;
         $marketing2target = (empty($PAGE->theme->settings->marketing2target)) ? false : $PAGE->theme->settings->marketing2target;
         $marketing2image = (empty($PAGE->theme->settings->marketing2image)) ? false : 'marketing2image';
-
+        
         $hasmarketing3 = (empty($PAGE->theme->settings->marketing3 && $PAGE->theme->settings->togglemarketing == 2)) ? false : format_string($PAGE->theme->settings->marketing3);
         $marketing3content = (empty($PAGE->theme->settings->marketing3content)) ? false : format_text($PAGE->theme->settings->marketing3content);
         $marketing3buttontext = (empty($PAGE->theme->settings->marketing3buttontext)) ? false : format_string($PAGE->theme->settings->marketing3buttontext);
         $marketing3buttonurl = (empty($PAGE->theme->settings->marketing3buttonurl)) ? false : $PAGE->theme->settings->marketing3buttonurl;
         $marketing3target = (empty($PAGE->theme->settings->marketing3target)) ? false : $PAGE->theme->settings->marketing3target;
         $marketing3image = (empty($PAGE->theme->settings->marketing3image)) ? false : 'marketing3image';
-
+        
         $hasmarketing4 = (empty($PAGE->theme->settings->marketing4 && $PAGE->theme->settings->togglemarketing == 2)) ? false : format_string($PAGE->theme->settings->marketing4);
         $marketing4content = (empty($PAGE->theme->settings->marketing4content)) ? false : format_text($PAGE->theme->settings->marketing4content);
         $marketing4buttontext = (empty($PAGE->theme->settings->marketing4buttontext)) ? false : format_string($PAGE->theme->settings->marketing4buttontext);
         $marketing4buttonurl = (empty($PAGE->theme->settings->marketing4buttonurl)) ? false : $PAGE->theme->settings->marketing4buttonurl;
         $marketing4target = (empty($PAGE->theme->settings->marketing4target)) ? false : $PAGE->theme->settings->marketing4target;
         $marketing4image = (empty($PAGE->theme->settings->marketing4image)) ? false : 'marketing4image';
-
+        
         $hasmarketing5 = (empty($PAGE->theme->settings->marketing5 && $PAGE->theme->settings->togglemarketing == 2)) ? false : format_string($PAGE->theme->settings->marketing5);
         $marketing5content = (empty($PAGE->theme->settings->marketing5content)) ? false : format_text($PAGE->theme->settings->marketing5content);
         $marketing5buttontext = (empty($PAGE->theme->settings->marketing5buttontext)) ? false : format_string($PAGE->theme->settings->marketing5buttontext);
         $marketing5buttonurl = (empty($PAGE->theme->settings->marketing5buttonurl)) ? false : $PAGE->theme->settings->marketing5buttonurl;
         $marketing5target = (empty($PAGE->theme->settings->marketing5target)) ? false : $PAGE->theme->settings->marketing5target;
         $marketing5image = (empty($PAGE->theme->settings->marketing5image)) ? false : 'marketing5image';
-
+        
         $hasmarketing6 = (empty($PAGE->theme->settings->marketing6 && $PAGE->theme->settings->togglemarketing == 2)) ? false : format_string($PAGE->theme->settings->marketing6);
         $marketing6content = (empty($PAGE->theme->settings->marketing6content)) ? false : format_text($PAGE->theme->settings->marketing6content);
         $marketing6buttontext = (empty($PAGE->theme->settings->marketing6buttontext)) ? false : format_string($PAGE->theme->settings->marketing6buttontext);
         $marketing6buttonurl = (empty($PAGE->theme->settings->marketing6buttonurl)) ? false : $PAGE->theme->settings->marketing6buttonurl;
         $marketing6target = (empty($PAGE->theme->settings->marketing6target)) ? false : $PAGE->theme->settings->marketing6target;
         $marketing6image = (empty($PAGE->theme->settings->marketing6image)) ? false : 'marketing6image';
-
+        
         $hasmarketing7 = (empty($PAGE->theme->settings->marketing7 && $PAGE->theme->settings->togglemarketing == 2)) ? false : format_string($PAGE->theme->settings->marketing7);
         $marketing7content = (empty($PAGE->theme->settings->marketing7content)) ? false : format_text($PAGE->theme->settings->marketing7content);
         $marketing7buttontext = (empty($PAGE->theme->settings->marketing7buttontext)) ? false : format_string($PAGE->theme->settings->marketing7buttontext);
@@ -1496,153 +1496,194 @@ class core_renderer extends \theme_boost\output\core_renderer {
         // Send to template.
         $haseditcog = $PAGE->theme->settings->courseeditingcog;
         $editcog = html_writer::div($this->context_header_settings_menu() , 'pull-xs-right context-header-settings-menu');
-        $dashlinks = ['showincourseonly' => $showincourseonly, 'haspermission' => $haspermission, 'courseactivities' => $courseactivities, 'togglebutton' => $togglebutton, 'togglebuttonstudent' => $togglebuttonstudent, 'userlinkstitle' => $userlinks, 'userlinksdesc' => $userlinksdesc, 'qbanktitle' => $qbank, 'activitylinkstitle' => $activitylinkstitle, 'activitylinkstitle_desc' => $activitylinkstitle_desc, 'qbankdesc' => $qbankdesc, 'badgestitle' => $badges, 'badgesdesc' => $badgesdesc, 'coursemanagetitle' => $coursemanage, 'coursemanagedesc' => $coursemanagedesc, 'coursemanagementmessage' => $coursemanagementmessage, 'progress' => $progress, 'gradeslink' => $gradeslink, 'gradeslinkstudent' => $gradeslinkstudent, 'hascourseinfogroup' => $hascourseinfogroup, 'courseinfo' => $courseinfo, 'hascoursestaffgroup' => $hascoursestaff, 'courseteachers' => $courseteachers, 'courseother' => $courseother, 'mygradestext' => $mygradestext, 'studentdashboardtextbox' => $studentdashboardtextbox, 'hasteacherdash' => $hasteacherdash, 'haseditcog'=>$haseditcog, 'editcog'=> $editcog, 'teacherdash' => array(
-            'hasquestionpermission' => $hasquestionpermission,
-            'hasbadgepermission' => $hasbadgepermission,
-            'hascoursepermission' => $hascoursepermission,
-            'hasuserpermission' => $hasuserpermission
-        ) , 'hasstudentdash' => $hasstudentdash, 'hasgradebookshow' => $hasgradebookshow, 'hascompletionshow' => $hascompletionshow, 'studentcourseadminlink' => $courseadminlink, 'studentcoursemanage' => $studentcoursemanage, 'hascourseadminshow' => $hascourseadminshow, 'hascompetency' => $hascompetency, 'competencytitle' => $competencytitle, 'competencyurl' => $competencyurl, 'dashlinks' => array(
-            array(
-                'hasuserlinks' => $gradebooktitle,
-                'title' => $gradebooktitle,
-                'url' => $gradebooklink
+        $dashlinks = [
+            'showincourseonly' => $showincourseonly, 
+            'haspermission' => $haspermission, 
+            'courseactivities' => $courseactivities, 
+            'togglebutton' => $togglebutton, 
+            'togglebuttonstudent' => $togglebuttonstudent, 
+            'userlinkstitle' => $userlinks, 
+            'userlinksdesc' => $userlinksdesc, 
+            'qbanktitle' => $qbank, 
+            'activitylinkstitle' => $activitylinkstitle, 
+            'activitylinkstitle_desc' => $activitylinkstitle_desc, 
+            'qbankdesc' => $qbankdesc, 
+            'badgestitle' => $badges, 
+            'badgesdesc' => $badgesdesc, 
+            'coursemanagetitle' => $coursemanage, 
+            'coursemanagedesc' => $coursemanagedesc, 
+            'coursemanagementmessage' => $coursemanagementmessage, 
+            'progress' => $progress, 
+            'gradeslink' => $gradeslink, 
+            'gradeslinkstudent' => $gradeslinkstudent, 
+            'hascourseinfogroup' => $hascourseinfogroup, 
+            'courseinfo' => $courseinfo, 
+            'hascoursestaffgroup' => $hascoursestaff, 
+            'courseteachers' => $courseteachers, 
+            'courseother' => $courseother, 
+            'mygradestext' => $mygradestext, 
+            'studentdashboardtextbox' => $studentdashboardtextbox, 
+            'hasteacherdash' => $hasteacherdash, 
+            'haseditcog'=>$haseditcog, 
+            'editcog'=> $editcog, 
+            'teacherdash' => array(
+                'hasquestionpermission' => $hasquestionpermission,
+                'hasbadgepermission' => $hasbadgepermission,
+                'hascoursepermission' => $hascoursepermission,
+                'hasuserpermission' => $hasuserpermission
+            ) , 
+            'hasstudentdash' => $hasstudentdash, 
+            'hasgradebookshow' => $hasgradebookshow, 
+            'hascompletionshow' => $hascompletionshow, 
+            'studentcourseadminlink' => $courseadminlink, 
+            'studentcoursemanage' => $studentcoursemanage, 
+            'hascourseadminshow' => $hascourseadminshow, 
+            'hascompetency' => $hascompetency, 
+            'competencytitle' => $competencytitle, 
+            'competencyurl' => $competencyurl, 
+            'dashlinks' => array(
+                array(
+                    'hasuserlinks' => $gradebooktitle,
+                    'title' => $gradebooktitle,
+                    'url' => $gradebooklink
+                ) ,
+                array(
+                    'hasuserlinks' => $participantstitle,
+                    'title' => $participantstitle,
+                    'url' => $participantslink
+                ) ,
+                array(
+                    'hasuserlinks' => $grouptitle,
+                    'title' => $grouptitle,
+                    'url' => $grouplink
+                ) ,
+                array(
+                    'hasuserlinks' => $enrolmethodtitle,
+                    'title' => $enrolmethodtitle,
+                    'url' => $enrolmethodlink
+                ) ,
+                array(
+                    'hasuserlinks' => $activitycompletiontitle,
+                    'title' => $activitycompletiontitle,
+                    'url' => $activitycompletionlink
+                ) ,
+                array(
+                    'hasuserlinks' => $completionreporttitle,
+                    'title' => $completionreporttitle,
+                    'url' => $completionreportlink
+                ) ,
+                array(
+                    'hasuserlinks' => $logstitle,
+                    'title' => $logstitle,
+                    'url' => $logslink
+                ) ,
+                array(
+                    'hasuserlinks' => $livelogstitle,
+                    'title' => $livelogstitle,
+                    'url' => $livelogslink
+                ) ,
+                array(
+                    'hasuserlinks' => $participationtitle,
+                    'title' => $participationtitle,
+                    'url' => $participationlink
+                ) ,
+                array(
+                    'hasuserlinks' => $activitytitle,
+                    'title' => $activitytitle,
+                    'url' => $activitylink
+                ) ,
+                array(
+                    'hasqbanklinks' => $qbanktitle,
+                    'title' => $qbanktitle,
+                    'url' => $qbanklink
+                ) ,
+                array(
+                    'hasqbanklinks' => $qcattitle,
+                    'title' => $qcattitle,
+                    'url' => $qcatlink
+                ) ,
+                array(
+                    'hasqbanklinks' => $qimporttitle,
+                    'title' => $qimporttitle,
+                    'url' => $qimportlink
+                ) ,
+                array(
+                    'hasqbanklinks' => $qexporttitle,
+                    'title' => $qexporttitle,
+                    'url' => $qexportlink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $courseedittitle,
+                    'title' => $courseedittitle,
+                    'url' => $courseeditlink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $gradestitle,
+                    'title' => $gradestitle,
+                    'url' => $gradeslink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $coursecompletiontitle,
+                    'title' => $coursecompletiontitle,
+                    'url' => $coursecompletionlink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $hascompetency,
+                    'title' => $competencytitle,
+                    'url' => $competencyurl
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $courseadmintitle,
+                    'title' => $courseadmintitle,
+                    'url' => $courseadminlink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $courseresettitle,
+                    'title' => $courseresettitle,
+                    'url' => $courseresetlink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $coursebackuptitle,
+                    'title' => $coursebackuptitle,
+                    'url' => $coursebackuplink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $courserestoretitle,
+                    'title' => $courserestoretitle,
+                    'url' => $courserestorelink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $courseimporttitle,
+                    'title' => $courseimporttitle,
+                    'url' => $courseimportlink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $recyclebintitle,
+                    'title' => $recyclebintitle,
+                    'url' => $recyclebinlink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $filtertitle,
+                    'title' => $filtertitle,
+                    'url' => $filterlink
+                ) ,
+                array(
+                    'hascoursemanagelinks' => $eventmonitoringtitle,
+                    'title' => $eventmonitoringtitle,
+                    'url' => $eventmonitoringlink
+                ) ,
+                array(
+                    'hasbadgelinks' => $badgemanagetitle,
+                    'title' => $badgemanagetitle,
+                    'url' => $badgemanagelink
+                ) ,
+                array(
+                    'hasbadgelinks' => $badgeaddtitle,
+                    'title' => $badgeaddtitle,
+                    'url' => $badgeaddlink
+                ) ,
             ) ,
-            array(
-                'hasuserlinks' => $participantstitle,
-                'title' => $participantstitle,
-                'url' => $participantslink
-            ) ,
-            array(
-                'hasuserlinks' => $grouptitle,
-                'title' => $grouptitle,
-                'url' => $grouplink
-            ) ,
-            array(
-                'hasuserlinks' => $enrolmethodtitle,
-                'title' => $enrolmethodtitle,
-                'url' => $enrolmethodlink
-            ) ,
-            array(
-                'hasuserlinks' => $activitycompletiontitle,
-                'title' => $activitycompletiontitle,
-                'url' => $activitycompletionlink
-            ) ,
-            array(
-                'hasuserlinks' => $completionreporttitle,
-                'title' => $completionreporttitle,
-                'url' => $completionreportlink
-            ) ,
-            array(
-                'hasuserlinks' => $logstitle,
-                'title' => $logstitle,
-                'url' => $logslink
-            ) ,
-            array(
-                'hasuserlinks' => $livelogstitle,
-                'title' => $livelogstitle,
-                'url' => $livelogslink
-            ) ,
-            array(
-                'hasuserlinks' => $participationtitle,
-                'title' => $participationtitle,
-                'url' => $participationlink
-            ) ,
-            array(
-                'hasuserlinks' => $activitytitle,
-                'title' => $activitytitle,
-                'url' => $activitylink
-            ) ,
-            array(
-                'hasqbanklinks' => $qbanktitle,
-                'title' => $qbanktitle,
-                'url' => $qbanklink
-            ) ,
-            array(
-                'hasqbanklinks' => $qcattitle,
-                'title' => $qcattitle,
-                'url' => $qcatlink
-            ) ,
-            array(
-                'hasqbanklinks' => $qimporttitle,
-                'title' => $qimporttitle,
-                'url' => $qimportlink
-            ) ,
-            array(
-                'hasqbanklinks' => $qexporttitle,
-                'title' => $qexporttitle,
-                'url' => $qexportlink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $courseedittitle,
-                'title' => $courseedittitle,
-                'url' => $courseeditlink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $gradestitle,
-                'title' => $gradestitle,
-                'url' => $gradeslink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $coursecompletiontitle,
-                'title' => $coursecompletiontitle,
-                'url' => $coursecompletionlink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $hascompetency,
-                'title' => $competencytitle,
-                'url' => $competencyurl
-            ) ,
-            array(
-                'hascoursemanagelinks' => $courseadmintitle,
-                'title' => $courseadmintitle,
-                'url' => $courseadminlink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $courseresettitle,
-                'title' => $courseresettitle,
-                'url' => $courseresetlink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $coursebackuptitle,
-                'title' => $coursebackuptitle,
-                'url' => $coursebackuplink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $courserestoretitle,
-                'title' => $courserestoretitle,
-                'url' => $courserestorelink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $courseimporttitle,
-                'title' => $courseimporttitle,
-                'url' => $courseimportlink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $recyclebintitle,
-                'title' => $recyclebintitle,
-                'url' => $recyclebinlink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $filtertitle,
-                'title' => $filtertitle,
-                'url' => $filterlink
-            ) ,
-            array(
-                'hascoursemanagelinks' => $eventmonitoringtitle,
-                'title' => $eventmonitoringtitle,
-                'url' => $eventmonitoringlink
-            ) ,
-            array(
-                'hasbadgelinks' => $badgemanagetitle,
-                'title' => $badgemanagetitle,
-                'url' => $badgemanagelink
-            ) ,
-            array(
-                'hasbadgelinks' => $badgeaddtitle,
-                'title' => $badgeaddtitle,
-                'url' => $badgeaddlink
-            ) ,
-        ) , ];
+            ];
         // Attach easy enrollment links if active.
         if ($globalhaseasyenrollment && $coursehaseasyenrollment) {
             $dashlinks['dashlinks'][] = array(

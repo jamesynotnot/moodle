@@ -173,6 +173,7 @@ function theme_fordson_get_pre_scss($theme) {
     'gutterwidth' => ['gutterwidth'],
     'topnavbarbg' => ['topnavbarbg'],
     'topnavbarteacherbg' => ['teachernavbarcolor'],
+    'slideshowspacer' => ['slideshowspacer'],
     ];
 
     // Add settings variables.
@@ -228,14 +229,14 @@ function theme_fordson_get_pre_scss($theme) {
     if ($PAGE->theme->settings->showcustomlogin == 1) {
         if (isset($loginbg)) {
             $prescss .= '#page.customloginimage {background-image: url("' . $loginbg . '") !important; background-size:cover; background-position:center;}';
-        }
+        } 
     } else {
         if (isset($loginbg)) {
             $prescss .= 'body#page-login-signup {background-image: url("' . $loginbg . '") !important; background-size:cover; background-position:center;}';
             $prescss .= 'body#page-login-index {background-image: url("' . $loginbg . '") !important; background-size:cover; background-position:center;}';
         }
     }
-
+    
     // Set the image.
     $marketing1image = $theme->setting_file_url('marketing1image', 'marketing1image');
     if (isset($marketing1image)) {
@@ -313,7 +314,7 @@ function theme_fordson_get_pre_scss($theme) {
 
 function theme_fordson_get_extra_scss($theme) {
     // Adapted from Boost to allow other changes or settings if required.
-
+    
     if (!empty($theme->settings->scss)) {
         $extrascss .= $theme->settings->scss;
     } else {

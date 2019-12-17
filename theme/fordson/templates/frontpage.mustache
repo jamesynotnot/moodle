@@ -75,19 +75,16 @@
             </div>
         {{/headerlogo}}
 
-        {{{ output.fp_slideshow }}}
+        {{#hasslideshowpages}}
+            {{{ output.fp_slideshow }}}
+        {{/hasslideshowpages}}
+
         {{{ output.full_header }}}
 
         <div id="page-content" class="row">
 
             <div id="region-main-box" class="col-12">
-<!--
-                <nav class="navbar menubar-fhs navbar-expand moodle-has-zindex" style="position:fixed;top:155px;max-height:325px;max-width:1023px;margin:auto;z-index:1$
-                    <ul class="nav navbar-nav ml-auto" style="width:-webkit-fill-available;">
-                        {{>theme_fordson/menubar-frontpage}}
-                    </ul>
-                </nav>
--->
+
                 {{#hasregionmainsettingsmenu}}
                 <div id="region-main-settings-menu" class="hidden-print {{#hasblocks}}has-blocks mb-3{{/hasblocks}}">
                     <div> {{{ output.region_main_settings_menu }}} </div>
@@ -100,10 +97,11 @@
                             {{/hasregionmainsettingsmenu}}
 
                             {{{ output.course_content_header }}}
-
-                            {{{ enrolform }}}
-
 -->
+                            {{#isloggedin}}
+                                {{{ enrolform }}}
+                            {{/isloggedin}}
+
                             {{{ output.fp_wonderbox }}}
                             {{{ output.main_content }}}
                             {{{ output.fp_marketingtiles }}}
@@ -143,13 +141,14 @@
                     </section>
                 {{/hasblocks}}
 
-<div style="max-width:1024px;">
-{{> theme_fordson/footer }}
-</div>
+                <div style="max-width:1024px;">
+                {{> theme_fordson/footer }}
+                </div>
+
             </div>
         </div>
-
     </div>
+
 {{{ output.standard_after_main_region_html }}}
 {{#hasfhsdrawer}}
 {{> theme_boost/nav-drawer }}

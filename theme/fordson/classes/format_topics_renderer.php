@@ -44,12 +44,12 @@ class theme_fordson_format_topics_renderer extends format_topics_renderer {
         $completioninfo = new completion_info($course);
         $cancomplete = isloggedin() && !isguestuser();
         $modinfo = get_fast_modinfo($course);
-
+        
         $sectionmods = array();
         $completioninfo = new completion_info($course);
         if (!empty($modinfo->sections[$section->section])) {
             foreach ($modinfo->sections[$section->section] as $cmid) {
-
+                
                 $thismod = $modinfo->cms[$cmid];
 
                 if ($thismod->modname == 'label') {
@@ -243,7 +243,7 @@ class theme_fordson_format_topics_renderer extends format_topics_renderer {
                 'style' => $statusstyle
             ));
         }
-
+        
 
         // End Willian Mono.
 
