@@ -1,4 +1,4 @@
-# AutoEnrol Enrolment Method
+# AutoEnrol Enrolment Method [![Build Status](https://travis-ci.org/bobopinna/moodle-enrol_autoenrol.svg?branch=master)](https://travis-ci.org/bobopinna/moodle-enrol_autoenrol)
 
 When added to a course this enrolment plugin can enrol users onto a course automatically,
 either as they log into your Moodle site or as they click on the course. It is intended 
@@ -15,7 +15,13 @@ users the ability to change when the user will be enrolled on a course, and what
 enrolment it will be (ie something other than student). There are further permissions 
 relating to the plugin which should be reviewed through Moodle's "Define Roles" page.
 
+
+**_Note:_** When you set to enrol users on site login, the users will be enrolled at first login but they see the new course in their dashboard from the second login. 
+This can't be fixed because moodle loads the users courses and then calls the enrol hook.
+
 ## Changelog
+* v2.1.1
+  * Added backup and restore support
 * v2.1
   * Added bulk operations
   * Added API Privacy support
@@ -73,7 +79,7 @@ Thanks also to users who have taken the time to share feedback and improve the m
 
 ## Technical Support
 
-Issue tracker can be found on [GitHub](https://github.com/bobopinna/enrol_autoenrol/issues). Please
+Issue tracker can be found on [GitHub](https://github.com/bobopinna/moodle-enrol_autoenrol/issues). Please
 try to give as much detail about your problem as possible and I'll do what I can to help.
 
 ## License
