@@ -3301,7 +3301,7 @@ EOD;
                 $coursecontrolsclasses
             );
 
-            $registerurl = new moodle_url('/login/signup.php');
+            $registerurl = new moodle_url('/mod/page/view.php?id=411');
             $htmlstr = $htmlstr.html_writer::div(
                     html_writer::tag("button",
                         "Request University Info",
