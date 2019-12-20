@@ -97,7 +97,7 @@ function core_myprofile_navigation(core_user\output\myprofile\tree $tree, $user,
                     }
                 }
                 $node = new core_user\output\myprofile\node('contact', 'editprofile',
-                        get_string('editmyprofile'), null, $url, null, null, 'contentnode');
+                        get_string('editmyprofile'), null, $url, null, null, 'editprofile');
                 $tree->add_node($node);
             }
         }
