@@ -62,3 +62,11 @@ $string['error_disabled_global'] = 'Easy enrollment is disabled for this course.
 $string['error_enrolstartdate'] = 'Enrollment has not begin for this course yet.';
 $string['error_enrolenddate'] = 'Enrollment for this course has ended.';
 $string['error_invalid_code'] = 'Invalid enrollment code.';
+
+$string['header_courseemail'] = 'Enrollment welcome email';
+$string['sendcoursewelcomemessage'] = 'Send course welcome message';
+$string['sendcoursewelcomemessage_help'] = 'When a user is easy enrolled in the course, they may be sent a welcome message email. If sent from the course contact (by default the teacher), and more than one user has this role, the email is sent from the first user to be assigned the role.';
+$string['welcomemessage'] = 'Welcome message';
+$string['welcometocourse'] = 'Welcome to {$a}';
+$string['customwelcomemessage'] = 'Custom welcome message';
+$string['customwelcomemessage_help'] = 'A custom welcome message may be added as plain text or Moodle-auto format, including HTML tags and multi-lang tags.';

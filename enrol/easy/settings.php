@@ -41,4 +41,24 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configcheckbox('enrol_easy/showqronmobile',
         get_string('showqronmobile', 'enrol_easy'), get_string('showqronmobiledesc', 'enrol_easy'), 0));
 
+    if (function_exists('enrol_send_welcome_email_options')) {
+        $options = enrol_send_welcome_email_options();
+        unset($options[ENROL_SEND_EMAIL_FROM_KEY_HOLDER]);
+        $settings->add(
+            new admin_setting_configselect('enrol_easy/sendcoursewelcomemessage',
+                get_string('sendcoursewelcomemessage', 'enrol_easy'),
+                get_string('sendcoursewelcomemessage_help', 'enrol_easy'),
+                ENROL_DO_NOT_SEND_EMAIL,
+                $options
+            )
+        );
+    } else {
+        $settings->add(
+            new admin_setting_configcheckbox('enrol_easy/sendcoursewelcomemessage',
+                get_string('sendcoursewelcomemessage', 'enrol_easy'),
+                get_string('sendcoursewelcomemessage_help', 'enrol_easy'),
+                0
+            )
+        );
+    }
 }

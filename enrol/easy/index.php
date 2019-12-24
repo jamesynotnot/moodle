@@ -84,6 +84,18 @@ if ($mform->get_data()) {
 
             $plugin->enrol_user($instance, $USER->id, $studentrole->id);
 
+            if (!defined('ENROL_DO_NOT_SEND_EMAIL')) {
+                define('ENROL_DO_NOT_SEND_EMAIL', 0);
+            }
+
+            if ($instance->enrol !== 'easy') {
+                throw new coding_exception('Invalid enrol instance type!');
+            }
+
+            if ($instance->customint7 != ENROL_DO_NOT_SEND_EMAIL) {
+                email_welcome_message($instance, $USER);
+            }
+
             if ($course->group_id) {
                 require_once($CFG->dirroot . '/group/lib.php');
                 groups_add_member($course->group_id, $USER->id);

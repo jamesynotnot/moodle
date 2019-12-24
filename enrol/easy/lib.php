@@ -49,7 +49,6 @@ class enrol_easy_plugin extends enrol_plugin {
             'component' => array(
                 'main_javascript' => new moodle_url('/enrol/easy/js/enrol_easy.js'),
                 'jquery' => new moodle_url('/enrol/easy/js/jquery-3.2.0.min.js'),
-  
             ),
             'config' => array(
                 'qrenabled' => $this->get_config('qrenabled') && ($this->get_config('showqronmobile') || !isMobile()),
@@ -121,6 +120,23 @@ class enrol_easy_plugin extends enrol_plugin {
         $mform->setType('enrolenddate', PARAM_NOTAGS);
         $mform->setDefault('enrolenddate', 0);
         $mform->addHelpButton('enrolenddate', 'enrolenddate', 'enrol_easy');
+
+        $mform->addElement('header', 'nameforyourheaderelement', get_string('header_courseemail', 'enrol_easy'));
+
+        if (function_exists('enrol_send_welcome_email_options')) {
+            $options = enrol_send_welcome_email_options();
+            unset($options[ENROL_SEND_EMAIL_FROM_KEY_HOLDER]);
+            $mform->addElement('select', 'customint7',
+                get_string('sendcoursewelcomemessage', 'enrol_easy'), $options);
+        } else {
+            $mform->addElement('checkbox', 'customint7', get_string('sendcoursewelcomemessage', 'enrol_easy'));
+        }
+
+        $mform->addElement('textarea', 'customtext1',
+            get_string('customwelcomemessage', 'enrol_easy'), array('cols' => '60', 'rows' => '8'));
+        $mform->setType('customwelcomemessage', PARAM_CLEANHTML);
+        $mform->setDefault('customtext1', '');
+        $mform->addHelpButton('customtext1', 'customwelcomemessage', 'enrol_easy');
 
         $mform->addElement('header', 'nameforyourheaderelement', get_string('header_coursecodes', 'enrol_easy'));
 
@@ -232,7 +248,7 @@ class enrol_easy_plugin extends enrol_plugin {
     }
     public function get_instance_defaults() {
         $fields = array();
-        
+
         return $fields;
     }
     public function edit_instance_validation($data, $files, $instance, $context) {
@@ -327,9 +343,8 @@ class enrol_easy_plugin extends enrol_plugin {
     public function enrol_course_delete($course) {
 
         $enrolmentcodes = $DB->delete_records('enrol_easy', array('course_id' => $course->id));
-    
+
         parent::enrol_course_delete($course);
 
     }
-
 }
