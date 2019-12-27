@@ -12,6 +12,7 @@ require_once(dirname(__FILE__) . '/../../config.php');
 
 function randomstring($length = 10) {
     //$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+    // DestinyEDU: index.php line 46: force lower, form.mustache line 9 transform lower
     $characters = '23456789abcdefghijkmnpqrstuvwxyz';
     $charactersLength = strlen($characters);
     $randomString = '';

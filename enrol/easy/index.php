@@ -44,6 +44,8 @@ if ($mform->get_data()) {
 
     $enrolment_code = required_param('enrolform_course_code', PARAM_TEXT);
 
+    $enrolment_code = strtolower($enrolment_code);
+
     $course = $DB->get_record('enrol_easy', array('enrolmentcode' => $enrolment_code), '*');
 
     if ($course && $course->course_id) {
