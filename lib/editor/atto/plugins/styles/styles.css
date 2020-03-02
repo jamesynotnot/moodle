@@ -1,0 +1,60 @@
+/* Prevent the menu from protruding from the editor if really many styles are added to the menu. */
+.editor_atto_menu .atto_styles_button .dropdown-menu {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+/* Prevent the menu from wrapping the menu items */
+.editor_atto_menu .atto_styles_button .dropdown-menu > li {
+    white-space: nowrap;
+}
+
+/* Separate the style list menu items more clearly. */
+.editor_atto_menu .atto_styles_button .dropdown-menu > li {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+/* Separate the style list menu items more clearly. */
+.editor_atto_menu .atto_styles_button .dropdown-menu > li {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+/* Position menu item icons */
+.editor_atto_menu .atto_styles_button .dropdown-menu > li > a i {
+    display: inline-block;
+    height: 15px;
+    margin-right: 10px;
+    width: 15px;
+}
+
+/* Override Atto core paddings for menu items to prevent the disabled inline menu items from showing a hand cursor */
+/* Additionally remove text underline from menu items in this widget because Boost adds underlines to menu items by default
+   but for disabled menu items this is counterproductive */
+.editor_atto_menu .atto_styles_button .dropdown-menu > li > a {
+    padding: 0;
+    text-decoration: none;
+}
+.editor_atto_menu .atto_styles_button .dropdown-menu > li > a span.preview,
+.editor_atto_menu .atto_styles_button .dropdown-menu > li > a span.title {
+    display: inline-block;
+    /* stylelint-disable-next-line declaration-no-important */
+    max-width: calc(100% - 55px) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    margin: 0 !important;
+}
+
+/* Disabled inline style menu item visually */
+.editor_atto_menu .disableinline .atto_styles_button .inlinestyle {
+    cursor: default;
+}
+.editor_atto_menu .atto_styles_button .inlinehint {
+    display: none;
+}
+.editor_atto_menu .disableinline .atto_styles_button .inlinehint {
+    display: inline-block;
+    margin-left: 39px;
+}
