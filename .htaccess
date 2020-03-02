@@ -10,8 +10,10 @@ RewriteRule ^alliances$ mod/page/view.php?id=322
 RewriteRule ^mission$ mod/page/view.php?id=323
 RewriteRule ^programs$ mod/page/view.php?id=319
 #RewriteRule ^empowerment$ course
-RewriteRule ^empowerment$ mod/page/view.php?id=410
+#RewriteRule ^empowerment$ mod/page/view.php?id=410
+RewriteRule ^empowerment$ mod/page/view.php?id=412
 RewriteRule ^empowerment/teb$ mod/page/view.php?id=412
+RewriteRule ^empowerment/manifest$ mod/page/view.php?id=545
 RewriteRule ^wc2020$ mod/page/view.php?id=413
 RewriteRule ^education$ mod/page/view.php?id=411
 RewriteRule ^education/aba$ mod/page/view.php?id=398
