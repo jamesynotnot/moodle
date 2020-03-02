@@ -715,6 +715,7 @@ Tour.prototype.renderStep = function (stepConfig) {
     // Is this the final step?
     if (this.isLastStep(stepConfig.stepNumber)) {
         template.find('[data-role="next"]').prop('disabled', true);
+        template.find('[data-role="end"]').prop('class', 'btn btn-primary');
     } else {
         template.find('[data-role="next"]').prop('disabled', false);
     }
